@@ -3,16 +3,22 @@ import SwiftUI
 struct homepage: View {
     var body: some View {
         NavigationView {
-            LazyVGrid(columns: [GridItem(), GridItem()]) {
-                VStack(spacing: 10) {
-                    FeatureButton(imageName: "list.number", label: "Leaderboard")
-                    FeatureButton(imageName: "note.text", label: "Journal")
-                    FeatureButton(imageName: "calendar", label: "Calendar")
-                }
-                VStack(spacing: 10) {
-                    FeatureButton(imageName: "play.circle", label: "Meditation")
-                    FeatureButton(imageName: "wind", label: "Breathing")
-                    FeatureButton(imageName: "quote.bubble", label: "Motivator")
+            VStack(spacing: 20) {
+                // Add CalendarView at the top
+                CalendarView()
+                
+                // Grid of FeatureButtons
+                LazyVGrid(columns: [GridItem(), GridItem()]) {
+                    VStack(spacing: 10) {
+                        FeatureButton(imageName: "list.number", label: "Leaderboard")
+                        FeatureButton(imageName: "note.text", label: "Journal")
+                        FeatureButton(imageName: "calendar", label: "Calendar")
+                    }
+                    VStack(spacing: 10) {
+                        FeatureButton(imageName: "play.circle", label: "Meditation")
+                        FeatureButton(imageName: "wind", label: "Breathing")
+                        FeatureButton(imageName: "quote.bubble", label: "Motivator")
+                    }
                 }
             }
             .navigationBarTitle("Welcome")
