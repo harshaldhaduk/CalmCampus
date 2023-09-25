@@ -26,26 +26,40 @@ struct homepage: View {
     }
 }
 
-struct FeatureButton: View {
+struct FeatureButton: View { // Feature button UI
     let imageName: String
     let label: String
+    let fontsize: CGFloat // Introduce a parameter for text size
+    
+    init(imageName: String, label: String, fontsize: CGFloat = 15.0) {
+        self.imageName = imageName
+        self.label = label
+        self.fontsize = fontsize
+    }
     
     var body: some View {
         NavigationLink(destination: FeatureView(featureName: label)) {
             HStack {
                 Image(systemName: imageName)
-                    .font(.title)
-                    .frame(width: 30, height: 30)
+                    .font(.system(size: 24)) // Image/logo size
+                    .frame(width: 20, height: 20) // Grey box size
+                    .padding(8) // Blue circle size
                     .background(Color.blue)
                     .clipShape(Circle())
                     .foregroundColor(.white)
-                    .padding(.trailing, 5)
+                    .padding(5)
+                    .overlay(
+                        Circle()
+                            .stroke(Color.white, lineWidth: 2)
+                    )
                 
                 Text(label)
-                    .font(.subheadline)
+                    .font(.system(size: fontsize))
+                    .fontWeight(.bold) // Make the text bold
                     .foregroundColor(.primary)
+                
+                Spacer() // Add Spacer to left-align content
             }
-            .frame(maxWidth: .infinity)
             .padding(.horizontal)
             .padding(.vertical, 5)
             .background(Color.secondary.opacity(0.1))

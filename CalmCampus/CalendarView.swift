@@ -6,9 +6,6 @@ struct CalendarView: View {
 
     var body: some View {
         VStack {
-            Text("Calendar")
-                .font(.title)
-                .padding(.top, 20)
 
             // Display the selected date
             Text("Selected Date: \(selectedDate, formatter: dateFormatter)")
@@ -81,9 +78,9 @@ struct CalendarGridView: View {
     }
 
     // Generate a matrix representing the calendar
-    private func getCalendarMatrix() -> [[Date]] {
+    private func getCalendarMatrix() -> [[Date?]] {
         let calendar = Calendar.current
-        var matrix: [[Date]] = []
+        var matrix: [[Date?]] = []
 
         var dateComponents = calendar.dateComponents([.year, .month, .day], from: currentDate)
         dateComponents.day = 1
@@ -92,11 +89,11 @@ struct CalendarGridView: View {
         let startOfWeekday = calendar.component(.weekday, from: firstDayOfMonth)
         let daysInMonth = calendar.range(of: .day, in: .month, for: firstDayOfMonth)!.count
 
-        var week: [Date] = Array(repeating: Date(), count: startOfWeekday - 1)
+        var week: [Date?] = Array(repeating: nil, count: startOfWeekday - 1)
 
         for day in 1...daysInMonth {
             dateComponents.day = day
-            let date = calendar.date(from: dateComponents)!
+            let date = calendar.date(from: dateComponents)
             week.append(date)
 
             if week.count == 7 {
@@ -108,10 +105,8 @@ struct CalendarGridView: View {
         if !week.isEmpty {
             if week.count < 7 {
                 let remainingDays = 7 - week.count
-                let lastDay = week.last!
                 for _ in 0..<remainingDays {
-                    let nextDay = calendar.date(byAdding: .day, value: 1, to: lastDay)!
-                    week.append(nextDay)
+                    week.append(nil)
                 }
             }
             matrix.append(week)
@@ -122,18 +117,20 @@ struct CalendarGridView: View {
 }
 
 struct DateCell: View {
-    let date: Date
+    let date: Date?
     @Binding var selectedDate: Date
 
     var body: some View {
         Button(action: {
-            selectedDate = date
+            if let date = date {
+                selectedDate = date
+            }
         }) {
-            Text("\(Calendar.current.component(.day, from: date))")
+            Text(date.map { "\(Calendar.current.component(.day, from: $0))" } ?? "")
                 .frame(width: 30, height: 30)
-                .background(date.isEqual(to: selectedDate) ? Color.blue : Color.clear)
+                .background(date?.isEqual(to: selectedDate) ?? false ? Color.blue : Color.clear)
                 .clipShape(Circle())
-                .foregroundColor(date.isEqual(to: selectedDate) ? .white : .primary)
+                .foregroundColor(date?.isEqual(to: selectedDate) ?? false ? .white : .primary)
         }
     }
 }
