@@ -1,45 +1,63 @@
 //
 //  ContentView.swift
-//  CalmCampus
+//  sample2
 //
-//  Created by Harshal Dhaduk on 9/9/23.
+//  Created by Harshal Dhaduk on 9/18/23.
 //
 
 import SwiftUI
 
-struct ContentView: View {
-    @State private var selectedTab: Tab = .house
-    
-    init() {
-        UITabBar.appearance().isHidden = true
+//tabbar
+struct HomeView: View {
+    var body: some View {
+        Text("Home View")
     }
+}
+
+struct RelaxView: View {
+    var body: some View {
+        Text("Relax View")
+    }
+}
+
+struct ProfileView: View {
+    var body: some View {
+        Text("Profile View")
+    }
+}
+
+struct ContentView: View {
+    @State private var selectedTab = 0
     
     var body: some View {
-        
-        ZStack {
-            VStack {
-                TabView(selection: $selectedTab) {
-                    ForEach(Tab.allCases, id: \.rawValue) { tab in
-                        HStack {
-                            Image(systemName: tab.rawValue)
-                            Text("\(tab.rawValue.capitalized)")
-                                .bold()
-                                .animation(nil, value: selectedTab)
-                        }
-                        .tag(tab)
-                    }
+        TabView(selection: $selectedTab) {
+            homepage()
+                .tabItem {
+                    Image(systemName: "house")
+                    Text("Home")
                 }
-            }
+                .tag(0)
             
-            VStack{
-                Spacer()
-                TabBar(selectedTab: $selectedTab)
-            }
+            relaxpage()
+                .tabItem {
+                    Image(systemName: "figure.mind.and.body")
+                    Text("Relax")
+                }
+                .tag(1)
+            
+            ProfileView()
+                .tabItem {
+                    Image(systemName: "person.fill")
+                    Text("Profile")
+                }
+                .tag(2)
         }
     }
 }
+
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
     }
 }
+

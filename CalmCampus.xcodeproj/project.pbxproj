@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		41B132D22AC154E70056BA15 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B132D12AC154E70056BA15 /* CalendarView.swift */; };
+		41B132D42AC156100056BA15 /* homepage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B132D32AC156100056BA15 /* homepage.swift */; };
+		41B132D82AC156480056BA15 /* relaxpage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B132D72AC156480056BA15 /* relaxpage.swift */; };
 		41CE68782AAD1E9E009216BA /* CalmCampusApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CE68772AAD1E9E009216BA /* CalmCampusApp.swift */; };
 		41CE687A2AAD1E9E009216BA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CE68792AAD1E9E009216BA /* ContentView.swift */; };
 		41CE687C2AAD1E9F009216BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41CE687B2AAD1E9F009216BA /* Assets.xcassets */; };
@@ -15,6 +18,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		41B132D12AC154E70056BA15 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		41B132D32AC156100056BA15 /* homepage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homepage.swift; sourceTree = "<group>"; };
+		41B132D72AC156480056BA15 /* relaxpage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = relaxpage.swift; sourceTree = "<group>"; };
 		41CE68742AAD1E9E009216BA /* CalmCampus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CalmCampus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		41CE68772AAD1E9E009216BA /* CalmCampusApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalmCampusApp.swift; sourceTree = "<group>"; };
 		41CE68792AAD1E9E009216BA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -54,6 +60,9 @@
 			isa = PBXGroup;
 			children = (
 				41CE68772AAD1E9E009216BA /* CalmCampusApp.swift */,
+				41B132D12AC154E70056BA15 /* CalendarView.swift */,
+				41B132D32AC156100056BA15 /* homepage.swift */,
+				41B132D72AC156480056BA15 /* relaxpage.swift */,
 				41CE68792AAD1E9E009216BA /* ContentView.swift */,
 				41CE688C2AAD26AA009216BA /* TabBar.swift */,
 				41CE687B2AAD1E9F009216BA /* Assets.xcassets */,
@@ -142,7 +151,10 @@
 			files = (
 				41CE687A2AAD1E9E009216BA /* ContentView.swift in Sources */,
 				41CE688D2AAD26AA009216BA /* TabBar.swift in Sources */,
+				41B132D22AC154E70056BA15 /* CalendarView.swift in Sources */,
+				41B132D42AC156100056BA15 /* homepage.swift in Sources */,
 				41CE68782AAD1E9E009216BA /* CalmCampusApp.swift in Sources */,
+				41B132D82AC156480056BA15 /* relaxpage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
