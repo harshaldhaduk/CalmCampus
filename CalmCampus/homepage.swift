@@ -5,7 +5,7 @@ struct homepage: View {
         NavigationView {
             VStack(alignment: .leading, spacing: 20) {
                 
-                Text("Welcome")
+                Text("Welcome!")
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .padding(.top, 20)
