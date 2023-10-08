@@ -1,17 +1,30 @@
 import SwiftUI
 
 struct homepage: View {
+    // Add a state variable to store the user's nickname
+    @State private var userNickname: String? = nil
+
     var body: some View {
         NavigationView {
             VStack(alignment: .leading, spacing: 20) {
-                
-                Text("Welcome!")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .padding(.top, 20)
-                    .padding(.horizontal)
+                // Check if userNickname is available, and display a personalized welcome message
+                if let nickname = userNickname {
+                    Text("Welcome \(nickname)!") // Display the user's nickname
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                        .padding(.top, 20)
+                        .padding(.horizontal)
+                } else {
+                    Text("Welcome!") // Default welcome message
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                        .padding(.top, 20)
+                        .padding(.horizontal)
+                }
                 // Add CalendarView at the top
                 CalendarView()
+                
+                Spacer()
                 
                 // Grid of FeatureButtons
                 LazyVGrid(columns: [GridItem(), GridItem()]) {
@@ -26,11 +39,15 @@ struct homepage: View {
                         FeatureButton(imageName: "quote.bubble", label: "Motivator")
                     }
                 }
-                
-                
+            }
+                       .onAppear {
+                           // Load the user's nickname from UserDefaults when the view appears
+                           if let savedNickname = UserDefaults.standard.string(forKey: "userNickname") {
+                               userNickname = savedNickname
+                           }
+                       }
                 
             }
-        }
         .padding(.bottom, 12) // Add bottom padding to create spacing
     }
 }

@@ -7,18 +7,6 @@
 
 import SwiftUI
 
-//tabbar
-struct HomeView: View {
-    var body: some View {
-        Text("Home View")
-    }
-}
-
-struct RelaxView: View {
-    var body: some View {
-        Text("Relax View")
-    }
-}
 
 struct ProfileView: View {
     var body: some View {
@@ -26,6 +14,7 @@ struct ProfileView: View {
     }
 }
 
+//tabbar
 struct ContentView: View {
     @State private var selectedTab = 0
     

@@ -47,10 +47,10 @@ struct landing: View {
                 .padding(.bottom, 20)
             }
             .padding()
-            .fullScreenCover(isPresented: $isSignedIn, content: {
-                ContentView()
-            })
         }
+        .fullScreenCover(isPresented: $isSignedIn, content: {
+            ContentView()
+        })
     }
 }
 
@@ -169,26 +169,29 @@ struct PasswordSetupView: View {
                     isPasswordsMatching = true
 
                     // Proceed with sign-up
-                    Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
-                        if let error = error {
-                            // Handle sign-up error
-                            print("Sign-up error: \(error.localizedDescription)")
-                        } else {
-                            // Sign-up successful, set isSignedIn to true to navigate to the home page
-                            isSignedIn = true
-                        }
-                    }
-                }
-            }) {
-                Text("Sign Up")
-                    .font(.headline)
-                    .foregroundColor(.white)
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(Color.green)
-                    .cornerRadius(10)
-                    .padding(.horizontal, 20)
-            }
+                           Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+                               if let error = error {
+                                   // Handle sign-up error
+                                   print("Sign-up error: \(error.localizedDescription)")
+                               } else {
+                                   // Sign-up successful, save the user's nickname to UserDefaults
+                                   UserDefaults.standard.set(name, forKey: "userNickname")
+
+                                   // Set isSignedIn to true to navigate to the home page
+                                   isSignedIn = true
+                               }
+                           }
+                       }
+                   }) {
+                       Text("Sign Up")
+                           .font(.headline)
+                           .foregroundColor(.white)
+                           .padding()
+                           .frame(maxWidth: .infinity)
+                           .background(Color.green)
+                           .cornerRadius(10)
+                           .padding(.horizontal, 20)
+                   }
         }
         .padding()
     }
