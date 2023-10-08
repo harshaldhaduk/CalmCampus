@@ -3,7 +3,13 @@ import SwiftUI
 struct homepage: View {
     var body: some View {
         NavigationView {
-            VStack(spacing: 20) {
+            VStack(alignment: .leading, spacing: 20) {
+                
+                Text("Welcome")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .padding(.top, 20)
+                    .padding(.horizontal)
                 // Add CalendarView at the top
                 CalendarView()
                 
@@ -20,11 +26,15 @@ struct homepage: View {
                         FeatureButton(imageName: "quote.bubble", label: "Motivator")
                     }
                 }
+                
+                
+                
             }
-            .navigationBarTitle("Welcome")
         }
+        .padding(.bottom, 12) // Add bottom padding to create spacing
     }
 }
+
 
 struct FeatureButton: View { // Feature button UI
     let imageName: String

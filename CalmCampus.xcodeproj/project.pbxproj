@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		41333A182AD256BA0033CA1A /* welcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41333A172AD256BA0033CA1A /* welcome.swift */; };
 		41B132D22AC154E70056BA15 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B132D12AC154E70056BA15 /* CalendarView.swift */; };
 		41B132D42AC156100056BA15 /* homepage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B132D32AC156100056BA15 /* homepage.swift */; };
 		41B132D82AC156480056BA15 /* relaxpage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B132D72AC156480056BA15 /* relaxpage.swift */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		41333A172AD256BA0033CA1A /* welcome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = welcome.swift; sourceTree = "<group>"; };
 		41B132D12AC154E70056BA15 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		41B132D32AC156100056BA15 /* homepage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homepage.swift; sourceTree = "<group>"; };
 		41B132D72AC156480056BA15 /* relaxpage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = relaxpage.swift; sourceTree = "<group>"; };
@@ -60,10 +62,11 @@
 			isa = PBXGroup;
 			children = (
 				41CE68772AAD1E9E009216BA /* CalmCampusApp.swift */,
+				41333A172AD256BA0033CA1A /* welcome.swift */,
+				41CE68792AAD1E9E009216BA /* ContentView.swift */,
 				41B132D12AC154E70056BA15 /* CalendarView.swift */,
 				41B132D32AC156100056BA15 /* homepage.swift */,
 				41B132D72AC156480056BA15 /* relaxpage.swift */,
-				41CE68792AAD1E9E009216BA /* ContentView.swift */,
 				41CE688C2AAD26AA009216BA /* TabBar.swift */,
 				41CE687B2AAD1E9F009216BA /* Assets.xcassets */,
 				41CE687D2AAD1E9F009216BA /* Preview Content */,
@@ -107,7 +110,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					41CE68732AAD1E9E009216BA = {
 						CreatedOnToolsVersion = 14.3.1;
@@ -154,6 +157,7 @@
 				41B132D22AC154E70056BA15 /* CalendarView.swift in Sources */,
 				41B132D42AC156100056BA15 /* homepage.swift in Sources */,
 				41CE68782AAD1E9E009216BA /* CalmCampusApp.swift in Sources */,
+				41333A182AD256BA0033CA1A /* welcome.swift in Sources */,
 				41B132D82AC156480056BA15 /* relaxpage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -197,6 +201,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -257,6 +262,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;

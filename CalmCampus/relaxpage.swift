@@ -12,7 +12,7 @@ struct relaxpage: View {
         NavigationView {
             ScrollView {
                 VStack(alignment: .leading, spacing: 20) {
-                    Text("Meditation & Relaxation")
+                    Text("Meditate")
                         .font(.largeTitle)
                         .fontWeight(.bold)
                         .padding(.top, 20)
@@ -22,6 +22,12 @@ struct relaxpage: View {
                         .padding(.horizontal)
                     
                     Divider()
+                        .padding(.horizontal)
+                    
+                    Text("Relax")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                        .padding(.top, 20)
                         .padding(.horizontal)
                     
                     RelaxationSessionView()
@@ -39,7 +45,6 @@ struct relaxpage: View {
                         .padding(.horizontal)
                 }
             }
-            .navigationBarTitle("Mindfulness App")
         }
     }
 }

@@ -11,7 +11,7 @@ import SwiftUI
 struct CalmCampusApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            welcome()
         }
     }
 }
