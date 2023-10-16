@@ -1,5 +1,6 @@
 import SwiftUI
 import FirebaseAuth
+import FirebaseFirestore
 
 struct landing: View {
     // Add an @State variable to track whether the user is signed in
@@ -169,18 +170,36 @@ struct PasswordSetupView: View {
                     isPasswordsMatching = true
 
                     // Proceed with sign-up
-                           Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
-                               if let error = error {
-                                   // Handle sign-up error
-                                   print("Sign-up error: \(error.localizedDescription)")
-                               } else {
-                                   // Sign-up successful, save the user's nickname to UserDefaults
-                                   UserDefaults.standard.set(name, forKey: "userNickname")
+                    // Inside the completion block of Auth.auth().createUser
+                    Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+                        if let error = error {
+                            // Handle sign-up error
+                            print("Sign-up error: \(error.localizedDescription)")
+                        } else {
+                            // Sign-up successful, save the user's nickname to UserDefaults
 
-                                   // Set isSignedIn to true to navigate to the home page
-                                   isSignedIn = true
-                               }
-                           }
+                            // Store user-specific data in Firestore
+                            if let uid = Auth.auth().currentUser?.uid {
+                                let db = Firestore.firestore()
+                                let userRef = db.collection("users").document(uid)
+
+                                // Store user-specific data
+                                userRef.setData(["nickname": name]) { error in
+                                    if let error = error {
+                                        print("Error storing user data in Firestore: \(error.localizedDescription)")
+                                    } else {
+                                        print("User data successfully stored in Firestore")
+                                    }
+                                }
+                            } else {
+                                print("Unable to obtain the user's UID")
+                            }
+
+                            // Set isSignedIn to true to navigate to the home page
+                            isSignedIn = true
+                        }
+                    }
+
                        }
                    }) {
                        Text("Sign Up")

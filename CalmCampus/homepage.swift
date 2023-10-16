@@ -1,31 +1,28 @@
 import SwiftUI
+import FirebaseAuth
+import FirebaseFirestore
 
 struct homepage: View {
     // Add a state variable to store the user's nickname
-    @State private var userNickname: String? = nil
+    @State private var userNickname: String? = "Welcome" // Initial value
 
     var body: some View {
         NavigationView {
             VStack(alignment: .leading, spacing: 20) {
                 // Check if userNickname is available, and display a personalized welcome message
                 if let nickname = userNickname {
-                    Text("Welcome \(nickname)!") // Display the user's nickname
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                        .padding(.top, 20)
-                        .padding(.horizontal)
-                } else {
-                    Text("Welcome!") // Default welcome message
+                    Text(nickname)
                         .font(.largeTitle)
                         .fontWeight(.bold)
                         .padding(.top, 20)
                         .padding(.horizontal)
                 }
+
                 // Add CalendarView at the top
                 CalendarView()
-                
+
                 Spacer()
-                
+
                 // Grid of FeatureButtons
                 LazyVGrid(columns: [GridItem(), GridItem()]) {
                     VStack(spacing: 10) {
@@ -40,18 +37,26 @@ struct homepage: View {
                     }
                 }
             }
-                       .onAppear {
-                           // Load the user's nickname from UserDefaults when the view appears
-                           if let savedNickname = UserDefaults.standard.string(forKey: "userNickname") {
-                               userNickname = savedNickname
-                           }
-                       }
-                
-            }
+        }
         .padding(.bottom, 12) // Add bottom padding to create spacing
+        .onAppear {
+            if let uid = Auth.auth().currentUser?.uid {
+                let db = Firestore.firestore()
+                let userRef = db.collection("users").document(uid)
+
+                userRef.getDocument { (document, error) in
+                    if let document = document, document.exists {
+                        if let nickname = document.data()?["nickname"] as? String {
+                            DispatchQueue.main.async {
+                                userNickname = "Welcome \(nickname)!" // Update with the Firestore data
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
-
 
 struct FeatureButton: View { // Feature button UI
     let imageName: String

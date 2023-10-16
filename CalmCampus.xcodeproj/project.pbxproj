@@ -36,6 +36,7 @@
 		412A57FE2AD27B5800A5B159 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 412A57FD2AD27B5800A5B159 /* FirebaseStorageCombine-Community */; };
 		41333A1A2AD263720033CA1A /* landing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41333A192AD263720033CA1A /* landing.swift */; };
 		41333A1C2AD273640033CA1A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 41333A1B2AD273640033CA1A /* GoogleService-Info.plist */; };
+		414E38CB2ADDB086009ADA20 /* journal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414E38CA2ADDB086009ADA20 /* journal.swift */; };
 		41B132D22AC154E70056BA15 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B132D12AC154E70056BA15 /* CalendarView.swift */; };
 		41B132D42AC156100056BA15 /* homepage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B132D32AC156100056BA15 /* homepage.swift */; };
 		41B132D82AC156480056BA15 /* relaxpage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B132D72AC156480056BA15 /* relaxpage.swift */; };
@@ -49,6 +50,7 @@
 /* Begin PBXFileReference section */
 		41333A192AD263720033CA1A /* landing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = landing.swift; sourceTree = "<group>"; };
 		41333A1B2AD273640033CA1A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		414E38CA2ADDB086009ADA20 /* journal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = journal.swift; sourceTree = "<group>"; };
 		41B132D12AC154E70056BA15 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		41B132D32AC156100056BA15 /* homepage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homepage.swift; sourceTree = "<group>"; };
 		41B132D72AC156480056BA15 /* relaxpage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = relaxpage.swift; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 				41333A192AD263720033CA1A /* landing.swift */,
 				41CE68792AAD1E9E009216BA /* ContentView.swift */,
 				41B132D12AC154E70056BA15 /* CalendarView.swift */,
+				414E38CA2ADDB086009ADA20 /* journal.swift */,
 				41B132D32AC156100056BA15 /* homepage.swift */,
 				41B132D72AC156480056BA15 /* relaxpage.swift */,
 				41CE688C2AAD26AA009216BA /* TabBar.swift */,
@@ -245,6 +248,7 @@
 				41CE687A2AAD1E9E009216BA /* ContentView.swift in Sources */,
 				41CE688D2AAD26AA009216BA /* TabBar.swift in Sources */,
 				41B132D22AC154E70056BA15 /* CalendarView.swift in Sources */,
+				414E38CB2ADDB086009ADA20 /* journal.swift in Sources */,
 				41B132D42AC156100056BA15 /* homepage.swift in Sources */,
 				41CE68782AAD1E9E009216BA /* CalmCampusApp.swift in Sources */,
 				41333A1A2AD263720033CA1A /* landing.swift in Sources */,
