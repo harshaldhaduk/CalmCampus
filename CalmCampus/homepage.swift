@@ -3,61 +3,70 @@ import FirebaseAuth
 import FirebaseFirestore
 
 struct homepage: View {
-    // Add a state variable to store the user's nickname
-    @State private var userNickname: String? = "Welcome" // Initial value
-    @State private var isJournalPresented = false // New state variable
-
+    @State private var userNickname: String? = "Welcome"
+    @State private var isJournalPresented = false
+    
     var body: some View {
         NavigationView {
-            VStack(alignment: .center) {
-                // Check if userNickname is available, and display a personalized welcome message
-                if let nickname = userNickname {
-                    Text(nickname)
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                        .padding(.top, 20)
+            ScrollView(.vertical, showsIndicators: true) {
+                VStack(spacing: 20) {
+                    if let nickname = userNickname {
+                        Text(nickname)
+                            .font(.largeTitle)
+                            .fontWeight(.bold)
+                            .padding(.top, 20)
+                    }
+                    
+                    CalendarView()
+                        .frame(minHeight: 450)
                         .padding(.horizontal)
-                }
-
-                // Add CalendarView at the top
-                CalendarView()
-
-                // Blue "Journal" button
-                Button(action: {
-                    isJournalPresented = true // Show the Journal sheet
-                }) {
-                    Text("Journal")
-                        .font(.system(size: 20))
-                        .fontWeight(.bold)
-                        .foregroundColor(.white)
+                    
+                    Button(action: {
+                        isJournalPresented = true
+                    }) {
+                        HStack {
+                            Text("Journal")
+                                .font(.system(size: 20))
+                                .fontWeight(.bold)
+                                .foregroundColor(.white)
+                                
+                            
+                            Image(systemName: "chevron.right")
+                                .foregroundColor(.white)
+                                .font(.headline)
+                               
+                        }
                         .frame(maxWidth: .infinity)
-                        .frame(height: 35) // Adjust the height as needed
+                        .frame(height: 50)
                         .background(Color.blue)
-                        .cornerRadius(10) // Add rounded corners
-                        .padding(.horizontal, 20) // Add padding to the sides
+                        .cornerRadius(10)
+                        .padding(.horizontal,22)
+                        .shadow(radius: 5)
+                        
+                    }
+                    .sheet(isPresented: $isJournalPresented) {
+                        Journal()
+                    }
                 }
-                .sheet(isPresented: $isJournalPresented) {
-                    Journal()
-                }
-
-                Spacer()
-                    .padding(.bottom, 12) // Add bottom padding to create spacing
-            }
-        }
-        .onAppear {
-            if let uid = Auth.auth().currentUser?.uid {
-                let db = Firestore.firestore()
-                let userRef = db.collection("users").document(uid)
-
-                userRef.getDocument { (document, error) in
-                    if let document = document, document.exists {
-                        if let nickname = document.data()?["nickname"] as? String {
-                            DispatchQueue.main.async {
-                                userNickname = "Welcome \(nickname)!" // Update with the Firestore data
+               
+                .onAppear {
+                    // Fetch user data from Firestore
+                    if let uid = Auth.auth().currentUser?.uid {
+                        let db = Firestore.firestore()
+                        let userRef = db.collection("users").document(uid)
+                        
+                        userRef.getDocument { (document, error) in
+                            if let document = document, document.exists {
+                                if let nickname = document.data()?["nickname"] as? String {
+                                    DispatchQueue.main.async {
+                                        userNickname = "Welcome \(nickname)!"
+                                    }
+                                }
                             }
                         }
                     }
                 }
+                .navigationBarTitle("", displayMode: .inline)
             }
         }
     }
