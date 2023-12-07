@@ -18,7 +18,7 @@ struct homepage: View {
                     }
                     
                     CalendarView()
-                        .frame(minHeight: 450)
+                        .frame(minHeight: 410)
                         .padding(.horizontal)
                     
                     Button(action: {
@@ -40,7 +40,7 @@ struct homepage: View {
                         .frame(height: 50)
                         .background(Color.blue)
                         .cornerRadius(10)
-                        .padding(.horizontal,22)
+                        .padding(.horizontal,20)
                         .shadow(radius: 5)
                         
                     }
