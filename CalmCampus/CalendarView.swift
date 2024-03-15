@@ -1,4 +1,6 @@
 import SwiftUI
+import FirebaseAuth
+import FirebaseFirestore
 
 struct CalendarView: View {
     @State private var currentDate: Date = Date()
@@ -25,6 +27,7 @@ struct CalendarView: View {
                 Text("Selected Date: \(selectedDate, formatter: dateFormatter)")
                     .font(.subheadline)
                     .padding(.top, 10)
+                    .padding(.bottom, 1)
                 
                 // Navigation buttons for month and year
                 HStack {
@@ -134,6 +137,7 @@ struct CalendarGridView: View {
 struct DateCell: View {
     let date: Date?
     @Binding var selectedDate: Date
+    @State private var moodColor: Color = .clear
 
     var body: some View {
         Button(action: {
@@ -143,9 +147,57 @@ struct DateCell: View {
         }) {
             Text(date.map { "\(Calendar.current.component(.day, from: $0))" } ?? "")
                 .frame(width: 30, height: 30)
-                .background(date?.isEqual(to: selectedDate) ?? false ? Color.blue : Color.clear)
+                .background(moodColor)
                 .clipShape(Circle())
-                .foregroundColor(date?.isEqual(to: selectedDate) ?? false ? .white : .primary)
+                .foregroundColor(.primary)
+        }
+        .onAppear {
+            loadMood(for: date)
+        }
+    }
+
+    func loadMood(for date: Date?) {
+        guard let date = date, date < Date() else { return } // Only consider past dates
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        let dateString = formatter.string(from: date)
+
+        if let uid = Auth.auth().currentUser?.uid {
+            let db = Firestore.firestore()
+            let moodRef = db.collection("users").document(uid).collection("moods").document(dateString)
+
+            moodRef.getDocument { document, error in
+                if let error = error {
+                    print("Failed to fetch mood: \(error)")
+                } else if let document = document, document.exists {
+                    if let mood = document.data()?["mood"] as? String {
+                        DispatchQueue.main.async {
+                            updateMoodColor(mood)
+                        }
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        if dateString == formatter.string(from: Date()) {
+                            moodColor = .blue // Set the current date to blue if no mood is detected
+                        } else {
+                            moodColor = Color.gray.opacity(0.2) // Set a lighter shade of grey for past days with no recorded mood
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    func updateMoodColor(_ mood: String) {
+        switch mood {
+        case "Happy":
+            moodColor = .green
+        case "Neutral":
+            moodColor = .yellow
+        case "Sad":
+            moodColor = .red
+        default:
+            moodColor = .blue
         }
     }
 }

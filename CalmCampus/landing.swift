@@ -11,7 +11,7 @@ struct landing: View {
             VStack {
                 Text("Welcome to CalmCampus!")
                     .padding(.top, 50)
-                    .font(.system(size:40))
+                    .font(.largeTitle)
                     .fontWeight(.bold)
                     .multilineTextAlignment(.center)
                     .padding()

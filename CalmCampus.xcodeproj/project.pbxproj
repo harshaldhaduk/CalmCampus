@@ -36,7 +36,12 @@
 		412A57FE2AD27B5800A5B159 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 412A57FD2AD27B5800A5B159 /* FirebaseStorageCombine-Community */; };
 		41333A1A2AD263720033CA1A /* landing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41333A192AD263720033CA1A /* landing.swift */; };
 		41333A1C2AD273640033CA1A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 41333A1B2AD273640033CA1A /* GoogleService-Info.plist */; };
+		413F3BAE2BA2BC78009C3F4A /* breathmed.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 413F3BAC2BA2BC78009C3F4A /* breathmed.mp3 */; };
 		414E38CB2ADDB086009ADA20 /* journal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414E38CA2ADDB086009ADA20 /* journal.swift */; };
+		415A60102B3817B200BA6ED7 /* breathawareness.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415A600F2B3817B200BA6ED7 /* breathawareness.swift */; };
+		415A60122B38193B00BA6ED7 /* movement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415A60112B38193B00BA6ED7 /* movement.swift */; };
+		415A60142B38194C00BA6ED7 /* mindfulness.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415A60132B38194C00BA6ED7 /* mindfulness.swift */; };
+		415A60162B38195500BA6ED7 /* loving.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415A60152B38195500BA6ED7 /* loving.swift */; };
 		41B132D22AC154E70056BA15 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B132D12AC154E70056BA15 /* CalendarView.swift */; };
 		41B132D42AC156100056BA15 /* homepage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B132D32AC156100056BA15 /* homepage.swift */; };
 		41B132D82AC156480056BA15 /* relaxpage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B132D72AC156480056BA15 /* relaxpage.swift */; };
@@ -45,12 +50,24 @@
 		41CE687C2AAD1E9F009216BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41CE687B2AAD1E9F009216BA /* Assets.xcassets */; };
 		41CE687F2AAD1E9F009216BA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41CE687E2AAD1E9F009216BA /* Preview Assets.xcassets */; };
 		41CE688D2AAD26AA009216BA /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CE688C2AAD26AA009216BA /* TabBar.swift */; };
+		41D7C2692BA3D9C700B01F94 /* movementmed.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 41D7C2682BA3D9C700B01F94 /* movementmed.mp3 */; };
+		41D7C26B2BA3FC7800B01F94 /* mindfulnessmed.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 41D7C26A2BA3FC7800B01F94 /* mindfulnessmed.mp3 */; };
+		41D7C26D2BA4032800B01F94 /* lovingmed.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 41D7C26C2BA4032800B01F94 /* lovingmed.mp3 */; };
+		41D7C26F2BA40E7A00B01F94 /* sensory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D7C26E2BA40E7A00B01F94 /* sensory.swift */; };
+		41D7C2712BA40EF400B01F94 /* nature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D7C2702BA40EF400B01F94 /* nature.swift */; };
+		41D7C2732BA40F0500B01F94 /* mentalimagery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D7C2722BA40F0500B01F94 /* mentalimagery.swift */; };
+		41D7C2752BA40F1000B01F94 /* artistic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D7C2742BA40F1000B01F94 /* artistic.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		41333A192AD263720033CA1A /* landing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = landing.swift; sourceTree = "<group>"; };
 		41333A1B2AD273640033CA1A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		413F3BAC2BA2BC78009C3F4A /* breathmed.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = breathmed.mp3; sourceTree = "<group>"; };
 		414E38CA2ADDB086009ADA20 /* journal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = journal.swift; sourceTree = "<group>"; };
+		415A600F2B3817B200BA6ED7 /* breathawareness.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = breathawareness.swift; sourceTree = "<group>"; };
+		415A60112B38193B00BA6ED7 /* movement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = movement.swift; sourceTree = "<group>"; };
+		415A60132B38194C00BA6ED7 /* mindfulness.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mindfulness.swift; sourceTree = "<group>"; };
+		415A60152B38195500BA6ED7 /* loving.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loving.swift; sourceTree = "<group>"; };
 		41B132D12AC154E70056BA15 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		41B132D32AC156100056BA15 /* homepage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homepage.swift; sourceTree = "<group>"; };
 		41B132D72AC156480056BA15 /* relaxpage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = relaxpage.swift; sourceTree = "<group>"; };
@@ -60,6 +77,13 @@
 		41CE687B2AAD1E9F009216BA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		41CE687E2AAD1E9F009216BA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		41CE688C2AAD26AA009216BA /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
+		41D7C2682BA3D9C700B01F94 /* movementmed.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = movementmed.mp3; sourceTree = "<group>"; };
+		41D7C26A2BA3FC7800B01F94 /* mindfulnessmed.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = mindfulnessmed.mp3; sourceTree = "<group>"; };
+		41D7C26C2BA4032800B01F94 /* lovingmed.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = lovingmed.mp3; sourceTree = "<group>"; };
+		41D7C26E2BA40E7A00B01F94 /* sensory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sensory.swift; sourceTree = "<group>"; };
+		41D7C2702BA40EF400B01F94 /* nature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nature.swift; sourceTree = "<group>"; };
+		41D7C2722BA40F0500B01F94 /* mentalimagery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mentalimagery.swift; sourceTree = "<group>"; };
+		41D7C2742BA40F1000B01F94 /* artistic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = artistic.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +124,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		413F3BAD2BA2BC78009C3F4A /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				41D7C26A2BA3FC7800B01F94 /* mindfulnessmed.mp3 */,
+				41D7C26C2BA4032800B01F94 /* lovingmed.mp3 */,
+				413F3BAC2BA2BC78009C3F4A /* breathmed.mp3 */,
+				41D7C2682BA3D9C700B01F94 /* movementmed.mp3 */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
+		415A600E2B38178F00BA6ED7 /* relax views */ = {
+			isa = PBXGroup;
+			children = (
+				41D7C26E2BA40E7A00B01F94 /* sensory.swift */,
+				41D7C2702BA40EF400B01F94 /* nature.swift */,
+				41D7C2742BA40F1000B01F94 /* artistic.swift */,
+				41D7C2722BA40F0500B01F94 /* mentalimagery.swift */,
+				415A600F2B3817B200BA6ED7 /* breathawareness.swift */,
+				415A60112B38193B00BA6ED7 /* movement.swift */,
+				415A60132B38194C00BA6ED7 /* mindfulness.swift */,
+				415A60152B38195500BA6ED7 /* loving.swift */,
+			);
+			path = "relax views";
+			sourceTree = "<group>";
+		};
 		41CE686B2AAD1E9E009216BA = {
 			isa = PBXGroup;
 			children = (
@@ -127,6 +177,8 @@
 				41B132D32AC156100056BA15 /* homepage.swift */,
 				41B132D72AC156480056BA15 /* relaxpage.swift */,
 				41CE688C2AAD26AA009216BA /* TabBar.swift */,
+				415A600E2B38178F00BA6ED7 /* relax views */,
+				413F3BAD2BA2BC78009C3F4A /* Sounds */,
 				41333A1B2AD273640033CA1A /* GoogleService-Info.plist */,
 				41CE687B2AAD1E9F009216BA /* Assets.xcassets */,
 				41CE687D2AAD1E9F009216BA /* Preview Content */,
@@ -232,9 +284,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41D7C26D2BA4032800B01F94 /* lovingmed.mp3 in Resources */,
+				41D7C2692BA3D9C700B01F94 /* movementmed.mp3 in Resources */,
 				41CE687F2AAD1E9F009216BA /* Preview Assets.xcassets in Resources */,
 				41CE687C2AAD1E9F009216BA /* Assets.xcassets in Resources */,
 				41333A1C2AD273640033CA1A /* GoogleService-Info.plist in Resources */,
+				41D7C26B2BA3FC7800B01F94 /* mindfulnessmed.mp3 in Resources */,
+				413F3BAE2BA2BC78009C3F4A /* breathmed.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,13 +301,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				415A60102B3817B200BA6ED7 /* breathawareness.swift in Sources */,
 				41CE687A2AAD1E9E009216BA /* ContentView.swift in Sources */,
+				415A60162B38195500BA6ED7 /* loving.swift in Sources */,
+				41D7C2732BA40F0500B01F94 /* mentalimagery.swift in Sources */,
 				41CE688D2AAD26AA009216BA /* TabBar.swift in Sources */,
+				41D7C2712BA40EF400B01F94 /* nature.swift in Sources */,
 				41B132D22AC154E70056BA15 /* CalendarView.swift in Sources */,
 				414E38CB2ADDB086009ADA20 /* journal.swift in Sources */,
+				41D7C26F2BA40E7A00B01F94 /* sensory.swift in Sources */,
+				415A60142B38194C00BA6ED7 /* mindfulness.swift in Sources */,
 				41B132D42AC156100056BA15 /* homepage.swift in Sources */,
 				41CE68782AAD1E9E009216BA /* CalmCampusApp.swift in Sources */,
+				41D7C2752BA40F1000B01F94 /* artistic.swift in Sources */,
 				41333A1A2AD263720033CA1A /* landing.swift in Sources */,
+				415A60122B38193B00BA6ED7 /* movement.swift in Sources */,
 				41B132D82AC156480056BA15 /* relaxpage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

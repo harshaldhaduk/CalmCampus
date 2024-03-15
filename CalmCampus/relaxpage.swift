@@ -1,10 +1,3 @@
-//
-//  relaxpage.swift
-//  sample2
-//
-//  Created by Harshal Dhaduk on 9/18/23.
-//
-
 import SwiftUI
 
 struct relaxpage: View {
@@ -17,9 +10,20 @@ struct relaxpage: View {
                         .fontWeight(.bold)
                         .padding(.top, 20)
                         .padding(.horizontal)
+                        .id("Meditate")
+                        
                     
-                    MeditationSessionView()
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 20) {
+                            // Meditation Session Boxes as Buttons in a Horizontal Scroll
+                            ForEach(0..<4) { index in
+                                MeditationSessionButton(title: meditationTitles(index), imageName: index == 0 ? "breathe" : nil)
+                            }
+                        }
                         .padding(.horizontal)
+                        .padding(.bottom,5)
+                    }
+                    .frame(height: 130)
                     
                     Divider()
                         .padding(.horizontal)
@@ -27,19 +31,29 @@ struct relaxpage: View {
                     Text("Relax")
                         .font(.largeTitle)
                         .fontWeight(.bold)
-                        .padding(.top, 20)
                         .padding(.horizontal)
+                        .id("Relax")
                     
-                    RelaxationSessionView()
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 20) {
+                            // Relaxation Session Boxes as Buttons in a Horizontal Scroll
+                            ForEach(0..<4) { index in
+                                RelaxationSessionButton(title: relaxationTitles(index))
+                            }
+                        }
                         .padding(.horizontal)
+                        .padding(.bottom,5)
+                    }
+                    .frame(height: 130)
                     
                     Divider()
                         .padding(.horizontal)
                     
                     Text("Featured Articles")
-                        .font(.title)
+                        .font(.largeTitle)
                         .fontWeight(.bold)
                         .padding(.horizontal)
+                        .id("Featured")
                     
                     ArticlesScrollView()
                         .padding(.horizontal)
@@ -49,54 +63,231 @@ struct relaxpage: View {
     }
 }
 
-struct MeditationAppView_Previews: PreviewProvider {
+struct relaxpage_Previews: PreviewProvider {
     static var previews: some View {
         relaxpage()
     }
 }
 
-
-struct MeditationSessionView: View {
-    var body: some View {
-        VStack {
-            Text("Meditation Sessions")
-                .font(.headline)
-                .padding(.top, 10)
-            
-            // Placeholder for meditation sessions
-            Text("Add your meditation content here.")
-                .foregroundColor(.gray)
-                .padding()
-        }
-        .background(Color.white)
-        .cornerRadius(10)
-        .shadow(radius: 5)
+func meditationTitles(_ index: Int) -> String {
+    switch index {
+    case 0: return "Breath Awareness"
+    case 1: return "Movement-Based"
+    case 2: return "Mindfulness"
+    case 3: return "Loving-Kindness"
+    default: return "Meditation \(index + 1)"
     }
 }
 
-struct RelaxationSessionView: View {
-    var body: some View {
-        VStack {
-            Text("Relaxation Sessions")
-                .font(.headline)
-                .padding(.top, 10)
-            
-            // Placeholder for relaxation sessions
-            Text("Add your relaxation content here.")
-                .foregroundColor(.gray)
-                .padding()
-        }
-        .background(Color.white)
-        .cornerRadius(10)
-        .shadow(radius: 5)
+func relaxationTitles(_ index: Int) -> String {
+    switch index {
+    case 0: return "Sensory Discovery"
+    case 1: return "Nature Soundscape"
+    case 2: return "Artistic Expression"
+    case 3: return "Mental Imagery"
+    default: return "Relaxation \(index + 1)"
     }
 }
+
+struct MeditationSessionButton: View {
+    var title: String
+    var imageName: String?
+
+    var body: some View {
+        Group {
+            if title == "Breath Awareness" {
+                NavigationLink(destination: breathawareness()) {
+                    buttonContent
+                }
+            } else if title == "Movement-Based" {
+                NavigationLink(destination: movement()) {
+                    buttonContent
+                }
+            } else if title == "Mindfulness" {
+                NavigationLink(destination: mindfulness()) {
+                    buttonContent
+                }
+            }
+            else if title == "Loving-Kindness" {
+                NavigationLink(destination: loving()) {
+                    buttonContent
+                }
+            } else {
+                Button(action: {
+                    // Action when the button is clicked for default cases
+                }) {
+                    buttonContent
+                }
+            }
+        }
+    }
+
+    var buttonContent: some View {
+        ZStack {
+            if title == "Movement-Based" {
+                Image("movement")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 200, height: 130)
+                    .clipped()
+                    .overlay(
+                        Color.black.opacity(0.3) // Increased opacity to 0.7
+                        .edgesIgnoringSafeArea(.all)
+                    )
+                    .blur(radius: 0) // Blur the image
+            }  else if title == "Mindfulness" {
+                Image("mindfulness")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 200, height: 130)
+                    .clipped()
+                    .overlay(
+                        Color.black.opacity(0.3) // Increased opacity to 0.7
+                            .edgesIgnoringSafeArea(.all)
+                    )
+                    .blur(radius: 0) // Blur the image
+            }  else if title == "Loving-Kindness" {
+                Image("loving")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 200, height: 130)
+                    .clipped()
+                    .overlay(
+                        Color.black.opacity(0.3) // Increased opacity to 0.7
+                            .edgesIgnoringSafeArea(.all)
+                    )
+                    .blur(radius: 0) // Blur the image
+            } else if let imageName = imageName {
+                Image(imageName)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 200, height: 130)
+                    .clipped()
+                    .overlay(
+                        Color.black.opacity(0.3) // Increased opacity to 0.7
+                        .edgesIgnoringSafeArea(.all)
+                    )
+                    .blur(radius: 0) // Blur the image
+            }
+            VStack {
+                Spacer()
+                Text(title)
+                    .font(.headline)
+                    .fontWeight(.bold)
+                    .foregroundColor(.white)
+                    .padding()
+                Spacer()
+           }
+        }
+        .frame(width: 200, height: 130)
+        .background(Color.white)
+        .cornerRadius(10)
+        .shadow(color: Color.black.opacity(0.4), radius: 5, x: 0, y: 5) // Adjusted drop shadow
+    }
+}
+
+struct RelaxationSessionButton: View {
+    var title: String
+    var imageName: String?
+
+    var body: some View {
+        Group {
+            if title == "Sensory Discovery" {
+                NavigationLink(destination: sensory()) {
+                    buttonContent
+                }
+            } else if title == "Nature Soundscape" {
+                NavigationLink(destination: nature()) {
+                    buttonContent
+                }
+            } else if title == "Artistic Expression" {
+                NavigationLink(destination: artistic()) {
+                    buttonContent
+                }
+            }
+            else if title == "Mental Imagery" {
+                NavigationLink(destination: mentalimagery()) {
+                    buttonContent
+                }
+            } else {
+                Button(action: {
+                    // Action when the button is clicked for default cases
+                }) {
+                    buttonContent
+                }
+            }
+        }
+    }
+
+    var buttonContent: some View {
+        ZStack {
+            if title == "Movement-Based" {
+                Image("movement")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 200, height: 130)
+                    .clipped()
+                    .overlay(
+                        Color.black.opacity(0.3) // Increased opacity to 0.7
+                        .edgesIgnoringSafeArea(.all)
+                    )
+                    .blur(radius: 0) // Blur the image
+            }  else if title == "Mindfulness" {
+                Image("mindfulness")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 200, height: 130)
+                    .clipped()
+                    .overlay(
+                        Color.black.opacity(0.3) // Increased opacity to 0.7
+                            .edgesIgnoringSafeArea(.all)
+                    )
+                    .blur(radius: 0) // Blur the image
+            }  else if title == "Loving-Kindness" {
+                Image("loving")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 200, height: 130)
+                    .clipped()
+                    .overlay(
+                        Color.black.opacity(0.3) // Increased opacity to 0.7
+                            .edgesIgnoringSafeArea(.all)
+                    )
+                    .blur(radius: 0) // Blur the image
+            } else if let imageName = imageName {
+                Image(imageName)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 200, height: 130)
+                    .clipped()
+                    .overlay(
+                        Color.black.opacity(0.3) // Increased opacity to 0.7
+                        .edgesIgnoringSafeArea(.all)
+                    )
+                    .blur(radius: 0) // Blur the image
+            }
+            VStack {
+                Spacer()
+                Text(title)
+                    .font(.headline)
+                    .fontWeight(.bold)
+                    .foregroundColor(.white)
+                    .padding()
+                Spacer()
+           }
+        }
+        .frame(width: 200, height: 130)
+        .background(Color.white)
+        .cornerRadius(10)
+        .shadow(color: Color.black.opacity(0.4), radius: 5, x: 0, y: 5) // Adjusted drop shadow
+    }
+}
+
 
 struct ArticlesScrollView: View {
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 20) {
-                // Placeholder for articles
                 ForEach(0..<5) { index in
                     ArticleCardView()
                 }
@@ -117,16 +308,14 @@ struct ArticleCardView: View {
                 .background(Color.blue)
                 .cornerRadius(10)
             
-            // Placeholder for article content
             Text("Add article content here.")
                 .foregroundColor(.gray)
                 .padding(.horizontal)
-                .lineLimit(2) // Adjust as needed
+                .lineLimit(2)
         }
-        .frame(width: 150, height: 200) // Adjust card dimensions
+        .frame(width: 250, height: 250)
         .background(Color.white)
         .cornerRadius(10)
-        .shadow(radius: 5)
+        .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 5) // Applied drop shadow
     }
 }
-

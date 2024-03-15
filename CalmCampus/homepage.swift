@@ -23,30 +23,37 @@ struct homepage: View {
                     
                     Button(action: {
                         isJournalPresented = true
-                    }) {
-                        HStack {
-                            Text("Journal")
-                                .font(.system(size: 20))
-                                .fontWeight(.bold)
-                                .foregroundColor(.white)
+                        }) {
+                        VStack {
+                            HStack {
+                                Text("Journal")
+                                    .font(.system(size: 25))
+                                    .fontWeight(.bold)
+                                    .foregroundColor(.white)
                                 
-                            
-                            Image(systemName: "chevron.right")
+                                
+                                Image(systemName: "chevron.right")
+                                    .foregroundColor(.white)
+                                    .font(.headline)
+                                
+                            }
+                            Text("Track Tasks and Homework!")
+                                .font(.system(size: 15))
                                 .foregroundColor(.white)
-                                .font(.headline)
-                               
+                            
                         }
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 50)
-                        .background(Color.blue)
-                        .cornerRadius(10)
-                        .padding(.horizontal,20)
-                        .shadow(radius: 5)
-                        
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 70)
+                            .background(Color.blue)
+                            .cornerRadius(10)
+                            .padding(.horizontal,20)
+                            .shadow(radius: 5)
                     }
                     .sheet(isPresented: $isJournalPresented) {
                         Journal()
                     }
+                    
+                    //add leaderboard here
                 }
                
                 .onAppear {
