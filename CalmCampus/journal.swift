@@ -11,7 +11,7 @@ struct Journal: View {
     var body: some View {
         VStack {
             Spacer()
-                .frame(height: 20) // Reduce spacing between top and journal
+                
 
             Text("Journal") // Title label
                 .font(.largeTitle) // Reduce font size

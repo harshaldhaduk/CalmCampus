@@ -138,12 +138,12 @@ struct PasswordSetupView: View {
 
             SecureField("Password", text: $password)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
+                .padding(.horizontal)
+                .padding(.top, 30)
 
             SecureField("Confirm Password", text: $confirmPassword)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
-
             // Password validation messages
             if !isPasswordValid {
                 Text("Password should be at least 6 characters long")
@@ -236,7 +236,8 @@ struct LoginView: View {
 
             TextField("Email", text: $email)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
+                .padding(.horizontal)
+                .padding(.top, 30)
 
             SecureField("Password", text: $password)
                 .textFieldStyle(RoundedBorderTextFieldStyle())

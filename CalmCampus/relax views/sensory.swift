@@ -1,18 +1,28 @@
-//
-//  sensory.swift
-//  CalmCampus
-//
-//  Created by Harshal Dhaduk on 3/15/24.
-//
-
 import SwiftUI
 
-struct sensory: View {
+struct sensory: View {    
+    let backgroundImage: Image = Image("movement")
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        GeometryReader { geometry in
+            ZStack {
+                // Background Image
+                backgroundImage
+                    .resizable()
+                    .scaledToFill()
+                Rectangle()
+                    .fill(Color.black)
+                    .scaledToFill()
+               
+                
+            }
+            }
+        }
     }
-}
+    
 
-#Preview {
-    sensory()
+struct sensory_Previews: PreviewProvider {
+    static var previews: some View {
+        sensory()
+    }
 }

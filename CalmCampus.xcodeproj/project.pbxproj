@@ -179,9 +179,9 @@
 				41CE688C2AAD26AA009216BA /* TabBar.swift */,
 				415A600E2B38178F00BA6ED7 /* relax views */,
 				413F3BAD2BA2BC78009C3F4A /* Sounds */,
+				41CE687D2AAD1E9F009216BA /* Preview Content */,
 				41333A1B2AD273640033CA1A /* GoogleService-Info.plist */,
 				41CE687B2AAD1E9F009216BA /* Assets.xcassets */,
-				41CE687D2AAD1E9F009216BA /* Preview Content */,
 			);
 			path = CalmCampus;
 			sourceTree = "<group>";

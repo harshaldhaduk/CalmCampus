@@ -221,8 +221,8 @@ struct RelaxationSessionButton: View {
 
     var buttonContent: some View {
         ZStack {
-            if title == "Movement-Based" {
-                Image("movement")
+            if title == "Sensory Discovery" {
+                Image("sensory")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 200, height: 130)
@@ -232,8 +232,8 @@ struct RelaxationSessionButton: View {
                         .edgesIgnoringSafeArea(.all)
                     )
                     .blur(radius: 0) // Blur the image
-            }  else if title == "Mindfulness" {
-                Image("mindfulness")
+            }  else if title == "Nature Soundscape" {
+                Image("nature")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 200, height: 130)
@@ -243,8 +243,8 @@ struct RelaxationSessionButton: View {
                             .edgesIgnoringSafeArea(.all)
                     )
                     .blur(radius: 0) // Blur the image
-            }  else if title == "Loving-Kindness" {
-                Image("loving")
+            }  else if title == "Artistic Expression" {
+                Image("artistic")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 200, height: 130)
@@ -254,15 +254,15 @@ struct RelaxationSessionButton: View {
                             .edgesIgnoringSafeArea(.all)
                     )
                     .blur(radius: 0) // Blur the image
-            } else if let imageName = imageName {
-                Image(imageName)
+            } else if title == "Mental Imagery" {
+                Image("mental")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 200, height: 130)
                     .clipped()
                     .overlay(
                         Color.black.opacity(0.3) // Increased opacity to 0.7
-                        .edgesIgnoringSafeArea(.all)
+                            .edgesIgnoringSafeArea(.all)
                     )
                     .blur(radius: 0) // Blur the image
             }
