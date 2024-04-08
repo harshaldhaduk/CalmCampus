@@ -1,11 +1,3 @@
-//
-//  ContentView.swift
-//  sample2
-//
-//  Created by Harshal Dhaduk on 9/18/23.
-//
-
-
 import SwiftUI
 import FirebaseFirestore
 import FirebaseAuth
@@ -17,44 +9,45 @@ struct ProfileView: View {
 }
 
 struct ContentView: View {
-    @State private var selectedTab = 0
     @State private var isLoading = true
     @State private var isShowingPopup = false
     @State private var selectedMood = ""
-    
+    @State private var isrelaxpagePresented = false
+    @State private var isModalViewPresented = false // Track if any modal view is presented
+
     var body: some View {
         ZStack {
-            TabView(selection: $selectedTab) {
-                homepage()
-                    .tabItem {
-                        Image(systemName: "house")
-                        Text("Home")
-                    }
-                    .tag(0)
-                
-                relaxpage()
-                    .tabItem {
-                        Image(systemName: "figure.mind.and.body")
-                        Text("Relax")
-                    }
-                    .tag(1)
-                
-                ProfileView()
-                    .tabItem {
-                        Image(systemName: "person.fill")
-                        Text("Profile")
-                    }
-                    .tag(2)
+            if !isModalViewPresented {
+                TabView {
+                    homepage()
+                        .tabItem {
+                            Image(systemName: "house")
+                            Text("Home")
+                        }
+
+                    relaxpage()
+                        .tabItem {
+                            Image(systemName: "figure.mind.and.body")
+                            Text("Relax")
+                        }
+                        .tag(1)
+
+                    ProfileView()
+                        .tabItem {
+                            Image(systemName: "person.fill")
+                            Text("Profile")
+                        }
+                }
+                .zIndex(1)
             }
-            .zIndex(1)
-            
+
             if isLoading || isShowingPopup {
                 // Blurred background
                 BlurView(style: .systemMaterial)
                     .edgesIgnoringSafeArea(.all)
                     .zIndex(2)
             }
-            
+
             if isLoading {
                 // Loading Screen
                 VStack {
@@ -68,7 +61,7 @@ struct ContentView: View {
                 }
                 .zIndex(3)
             }
-            
+
             if isShowingPopup {
                 // Popup view
                 MoodPopupView(isShowingPopup: $isShowingPopup, selectedMood: $selectedMood) { mood in
@@ -80,7 +73,13 @@ struct ContentView: View {
         .onAppear {
             checkMoodForToday()
         }
+        .sheet(isPresented: $isrelaxpagePresented) {
+            NavigationView {
+                relaxpage() // Just present the relaxpage without additional parameters
+            }
+        }
     }
+
     
     func checkMoodForToday() {
         let formatter = DateFormatter()

@@ -11,7 +11,6 @@ struct relaxpage: View {
                         .padding(.top, 20)
                         .padding(.horizontal)
                         .id("Meditate")
-                        
                     
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 20) {
@@ -63,12 +62,6 @@ struct relaxpage: View {
     }
 }
 
-struct relaxpage_Previews: PreviewProvider {
-    static var previews: some View {
-        relaxpage()
-    }
-}
-
 func meditationTitles(_ index: Int) -> String {
     switch index {
     case 0: return "Breath Awareness"
@@ -92,7 +85,7 @@ func relaxationTitles(_ index: Int) -> String {
 struct MeditationSessionButton: View {
     var title: String
     var imageName: String?
-
+    
     var body: some View {
         Group {
             if title == "Breath Awareness" {
@@ -121,7 +114,7 @@ struct MeditationSessionButton: View {
             }
         }
     }
-
+    
     var buttonContent: some View {
         ZStack {
             if title == "Movement-Based" {
@@ -132,7 +125,7 @@ struct MeditationSessionButton: View {
                     .clipped()
                     .overlay(
                         Color.black.opacity(0.3) // Increased opacity to 0.7
-                        .edgesIgnoringSafeArea(.all)
+                            .edgesIgnoringSafeArea(.all)
                     )
                     .blur(radius: 0) // Blur the image
             }  else if title == "Mindfulness" {
@@ -165,7 +158,7 @@ struct MeditationSessionButton: View {
                     .clipped()
                     .overlay(
                         Color.black.opacity(0.3) // Increased opacity to 0.7
-                        .edgesIgnoringSafeArea(.all)
+                            .edgesIgnoringSafeArea(.all)
                     )
                     .blur(radius: 0) // Blur the image
             }
@@ -177,7 +170,7 @@ struct MeditationSessionButton: View {
                     .foregroundColor(.white)
                     .padding()
                 Spacer()
-           }
+            }
         }
         .frame(width: 200, height: 130)
         .background(Color.white)
@@ -189,24 +182,24 @@ struct MeditationSessionButton: View {
 struct RelaxationSessionButton: View {
     var title: String
     var imageName: String?
-
+    
     var body: some View {
         Group {
             if title == "Sensory Discovery" {
-                NavigationLink(destination: sensory()) {
+                NavigationLink(destination: sensory().edgesIgnoringSafeArea(.all)) {
                     buttonContent
                 }
             } else if title == "Nature Soundscape" {
-                NavigationLink(destination: nature()) {
+                NavigationLink(destination: nature().edgesIgnoringSafeArea(.all)) {
                     buttonContent
                 }
             } else if title == "Artistic Expression" {
-                NavigationLink(destination: artistic()) {
+                NavigationLink(destination: artistic().edgesIgnoringSafeArea(.all)) {
                     buttonContent
                 }
             }
             else if title == "Mental Imagery" {
-                NavigationLink(destination: mentalimagery()) {
+                NavigationLink(destination: mentalimagery().edgesIgnoringSafeArea(.all)) {
                     buttonContent
                 }
             } else {
@@ -218,7 +211,7 @@ struct RelaxationSessionButton: View {
             }
         }
     }
-
+    
     var buttonContent: some View {
         ZStack {
             if title == "Sensory Discovery" {
@@ -229,7 +222,7 @@ struct RelaxationSessionButton: View {
                     .clipped()
                     .overlay(
                         Color.black.opacity(0.3) // Increased opacity to 0.7
-                        .edgesIgnoringSafeArea(.all)
+                            .edgesIgnoringSafeArea(.all)
                     )
                     .blur(radius: 0) // Blur the image
             }  else if title == "Nature Soundscape" {
@@ -274,7 +267,7 @@ struct RelaxationSessionButton: View {
                     .foregroundColor(.white)
                     .padding()
                 Spacer()
-           }
+            }
         }
         .frame(width: 200, height: 130)
         .background(Color.white)
@@ -282,7 +275,6 @@ struct RelaxationSessionButton: View {
         .shadow(color: Color.black.opacity(0.4), radius: 5, x: 0, y: 5) // Adjusted drop shadow
     }
 }
-
 
 struct ArticlesScrollView: View {
     var body: some View {
@@ -317,5 +309,11 @@ struct ArticleCardView: View {
         .background(Color.white)
         .cornerRadius(10)
         .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 5) // Applied drop shadow
+    }
+}
+
+struct Relaxpage_Previews: PreviewProvider {
+    static var previews: some View {
+        relaxpage()
     }
 }
