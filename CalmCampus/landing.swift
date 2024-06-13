@@ -3,18 +3,21 @@ import FirebaseAuth
 import FirebaseFirestore
 
 struct landing: View {
-    // Add an @State variable to track whether the user is signed in
     @State private var isSignedIn = false
 
     var body: some View {
         NavigationView {
             VStack {
+                Image("logo")
+                    .resizable()
+                    .frame(width: 250, height: 250) // adjust the size to your liking
+                    .clipped()
+                
                 Text("Welcome to CalmCampus!")
-                    .padding(.top, 50)
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .multilineTextAlignment(.center)
-                    .padding()
+                    .padding(.bottom, 1)
 
                 Text("Let's get started with your sign-up.")
                     .font(.headline)

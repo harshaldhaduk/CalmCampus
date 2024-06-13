@@ -36,6 +36,27 @@
 		412A57FE2AD27B5800A5B159 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 412A57FD2AD27B5800A5B159 /* FirebaseStorageCombine-Community */; };
 		41333A1A2AD263720033CA1A /* landing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41333A192AD263720033CA1A /* landing.swift */; };
 		41333A1C2AD273640033CA1A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 41333A1B2AD273640033CA1A /* GoogleService-Info.plist */; };
+		413BA35A2C141E4E006B3C1B /* forest.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 413BA3592C141E4E006B3C1B /* forest.mp3 */; };
+		413BA35C2C14242B006B3C1B /* water.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 413BA35B2C14242B006B3C1B /* water.mp3 */; };
+		413BA35E2C143211006B3C1B /* fire.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 413BA35D2C143211006B3C1B /* fire.mp3 */; };
+		413BA3602C1436ED006B3C1B /* library.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 413BA35F2C1436ED006B3C1B /* library.mp3 */; };
+		413BA3642C144255006B3C1B /* owl.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 413BA3632C144255006B3C1B /* owl.mp3 */; };
+		413BA3662C144306006B3C1B /* frogs.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 413BA3652C144306006B3C1B /* frogs.mp3 */; };
+		413BA3682C1641C8006B3C1B /* whale.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 413BA3672C1641C8006B3C1B /* whale.mp3 */; };
+		413BA36A2C165785006B3C1B /* wind.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 413BA3692C165785006B3C1B /* wind.mp3 */; };
+		413BA36C2C1659F3006B3C1B /* rain.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 413BA36B2C1659F3006B3C1B /* rain.mp3 */; };
+		413BA36E2C165AB7006B3C1B /* thunder.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 413BA36D2C165AB7006B3C1B /* thunder.mp3 */; };
+		413BA3702C165F30006B3C1B /* hail.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 413BA36F2C165F30006B3C1B /* hail.mp3 */; };
+		413BA3722C1661B4006B3C1B /* gravel.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 413BA3712C1661B4006B3C1B /* gravel.mp3 */; };
+		413BA3742C1661B9006B3C1B /* dirt.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 413BA3732C1661B9006B3C1B /* dirt.mp3 */; };
+		413BA3762C1661BE006B3C1B /* sand.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 413BA3752C1661BE006B3C1B /* sand.mp3 */; };
+		413BA3782C1661C3006B3C1B /* mud.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 413BA3772C1661C3006B3C1B /* mud.mp3 */; };
+		413BA37A2C16C8F9006B3C1B /* snow.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 413BA3792C16C8F9006B3C1B /* snow.mp3 */; };
+		413BA37C2C16E177006B3C1B /* marker.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 413BA37B2C16E177006B3C1B /* marker.mp3 */; };
+		413BA37E2C16E240006B3C1B /* slime.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 413BA37D2C16E240006B3C1B /* slime.mp3 */; };
+		413BA3812C16E61E006B3C1B /* keyboard.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 413BA3802C16E61E006B3C1B /* keyboard.mp3 */; };
+		413BA3832C181779006B3C1B /* foam.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 413BA3822C181779006B3C1B /* foam.mp3 */; };
+		413BA3872C181D3A006B3C1B /* marble.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 413BA3862C181D3A006B3C1B /* marble.mp3 */; };
 		413F3BAE2BA2BC78009C3F4A /* breathmed.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 413F3BAC2BA2BC78009C3F4A /* breathmed.mp3 */; };
 		414E38CB2ADDB086009ADA20 /* journal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414E38CA2ADDB086009ADA20 /* journal.swift */; };
 		415A60102B3817B200BA6ED7 /* breathawareness.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415A600F2B3817B200BA6ED7 /* breathawareness.swift */; };
@@ -62,6 +83,27 @@
 /* Begin PBXFileReference section */
 		41333A192AD263720033CA1A /* landing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = landing.swift; sourceTree = "<group>"; };
 		41333A1B2AD273640033CA1A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		413BA3592C141E4E006B3C1B /* forest.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = forest.mp3; sourceTree = "<group>"; };
+		413BA35B2C14242B006B3C1B /* water.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = water.mp3; sourceTree = "<group>"; };
+		413BA35D2C143211006B3C1B /* fire.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = fire.mp3; sourceTree = "<group>"; };
+		413BA35F2C1436ED006B3C1B /* library.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = library.mp3; sourceTree = "<group>"; };
+		413BA3632C144255006B3C1B /* owl.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = owl.mp3; sourceTree = "<group>"; };
+		413BA3652C144306006B3C1B /* frogs.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = frogs.mp3; sourceTree = "<group>"; };
+		413BA3672C1641C8006B3C1B /* whale.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = whale.mp3; sourceTree = "<group>"; };
+		413BA3692C165785006B3C1B /* wind.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wind.mp3; sourceTree = "<group>"; };
+		413BA36B2C1659F3006B3C1B /* rain.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = rain.mp3; sourceTree = "<group>"; };
+		413BA36D2C165AB7006B3C1B /* thunder.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = thunder.mp3; sourceTree = "<group>"; };
+		413BA36F2C165F30006B3C1B /* hail.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = hail.mp3; sourceTree = "<group>"; };
+		413BA3712C1661B4006B3C1B /* gravel.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = gravel.mp3; sourceTree = "<group>"; };
+		413BA3732C1661B9006B3C1B /* dirt.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = dirt.mp3; sourceTree = "<group>"; };
+		413BA3752C1661BE006B3C1B /* sand.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sand.mp3; sourceTree = "<group>"; };
+		413BA3772C1661C3006B3C1B /* mud.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = mud.mp3; sourceTree = "<group>"; };
+		413BA3792C16C8F9006B3C1B /* snow.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = snow.mp3; sourceTree = "<group>"; };
+		413BA37B2C16E177006B3C1B /* marker.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = marker.mp3; sourceTree = "<group>"; };
+		413BA37D2C16E240006B3C1B /* slime.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = slime.mp3; sourceTree = "<group>"; };
+		413BA3802C16E61E006B3C1B /* keyboard.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = keyboard.mp3; sourceTree = "<group>"; };
+		413BA3822C181779006B3C1B /* foam.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = foam.mp3; sourceTree = "<group>"; };
+		413BA3862C181D3A006B3C1B /* marble.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = marble.mp3; sourceTree = "<group>"; };
 		413F3BAC2BA2BC78009C3F4A /* breathmed.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = breathmed.mp3; sourceTree = "<group>"; };
 		414E38CA2ADDB086009ADA20 /* journal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = journal.swift; sourceTree = "<group>"; };
 		415A600F2B3817B200BA6ED7 /* breathawareness.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = breathawareness.swift; sourceTree = "<group>"; };
@@ -127,9 +169,30 @@
 		413F3BAD2BA2BC78009C3F4A /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				413BA3652C144306006B3C1B /* frogs.mp3 */,
+				413BA35F2C1436ED006B3C1B /* library.mp3 */,
+				413BA3692C165785006B3C1B /* wind.mp3 */,
+				413BA3672C1641C8006B3C1B /* whale.mp3 */,
+				413BA36B2C1659F3006B3C1B /* rain.mp3 */,
+				413BA3712C1661B4006B3C1B /* gravel.mp3 */,
+				413BA3752C1661BE006B3C1B /* sand.mp3 */,
+				413BA36F2C165F30006B3C1B /* hail.mp3 */,
+				413BA3802C16E61E006B3C1B /* keyboard.mp3 */,
+				413BA37B2C16E177006B3C1B /* marker.mp3 */,
+				413BA3862C181D3A006B3C1B /* marble.mp3 */,
+				413BA3632C144255006B3C1B /* owl.mp3 */,
+				413BA3772C1661C3006B3C1B /* mud.mp3 */,
+				413BA3732C1661B9006B3C1B /* dirt.mp3 */,
+				413BA35D2C143211006B3C1B /* fire.mp3 */,
+				413BA3792C16C8F9006B3C1B /* snow.mp3 */,
+				413BA37D2C16E240006B3C1B /* slime.mp3 */,
+				413BA35B2C14242B006B3C1B /* water.mp3 */,
+				413BA3592C141E4E006B3C1B /* forest.mp3 */,
 				41D7C26A2BA3FC7800B01F94 /* mindfulnessmed.mp3 */,
+				413BA36D2C165AB7006B3C1B /* thunder.mp3 */,
 				41D7C26C2BA4032800B01F94 /* lovingmed.mp3 */,
 				413F3BAC2BA2BC78009C3F4A /* breathmed.mp3 */,
+				413BA3822C181779006B3C1B /* foam.mp3 */,
 				41D7C2682BA3D9C700B01F94 /* movementmed.mp3 */,
 			);
 			path = Sounds;
@@ -284,13 +347,34 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				413BA36C2C1659F3006B3C1B /* rain.mp3 in Resources */,
+				413BA3742C1661B9006B3C1B /* dirt.mp3 in Resources */,
+				413BA37C2C16E177006B3C1B /* marker.mp3 in Resources */,
+				413BA3872C181D3A006B3C1B /* marble.mp3 in Resources */,
 				41D7C26D2BA4032800B01F94 /* lovingmed.mp3 in Resources */,
+				413BA3702C165F30006B3C1B /* hail.mp3 in Resources */,
+				413BA3602C1436ED006B3C1B /* library.mp3 in Resources */,
+				413BA3762C1661BE006B3C1B /* sand.mp3 in Resources */,
+				413BA37A2C16C8F9006B3C1B /* snow.mp3 in Resources */,
 				41D7C2692BA3D9C700B01F94 /* movementmed.mp3 in Resources */,
+				413BA35C2C14242B006B3C1B /* water.mp3 in Resources */,
 				41CE687F2AAD1E9F009216BA /* Preview Assets.xcassets in Resources */,
+				413BA35A2C141E4E006B3C1B /* forest.mp3 in Resources */,
+				413BA37E2C16E240006B3C1B /* slime.mp3 in Resources */,
 				41CE687C2AAD1E9F009216BA /* Assets.xcassets in Resources */,
+				413BA35E2C143211006B3C1B /* fire.mp3 in Resources */,
+				413BA3642C144255006B3C1B /* owl.mp3 in Resources */,
 				41333A1C2AD273640033CA1A /* GoogleService-Info.plist in Resources */,
+				413BA3682C1641C8006B3C1B /* whale.mp3 in Resources */,
+				413BA36A2C165785006B3C1B /* wind.mp3 in Resources */,
+				413BA3812C16E61E006B3C1B /* keyboard.mp3 in Resources */,
+				413BA3832C181779006B3C1B /* foam.mp3 in Resources */,
 				41D7C26B2BA3FC7800B01F94 /* mindfulnessmed.mp3 in Resources */,
+				413BA3722C1661B4006B3C1B /* gravel.mp3 in Resources */,
 				413F3BAE2BA2BC78009C3F4A /* breathmed.mp3 in Resources */,
+				413BA36E2C165AB7006B3C1B /* thunder.mp3 in Resources */,
+				413BA3662C144306006B3C1B /* frogs.mp3 in Resources */,
+				413BA3782C1661C3006B3C1B /* mud.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

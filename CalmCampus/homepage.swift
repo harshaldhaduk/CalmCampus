@@ -52,8 +52,10 @@ struct homepage: View {
                     .sheet(isPresented: $isJournalPresented) {
                         Journal()
                     }
-                    
                     //add leaderboard here
+                    
+                    .padding(.bottom, 100) //spacing to help offset the tabbar
+            
                 }
                
                 .onAppear {
