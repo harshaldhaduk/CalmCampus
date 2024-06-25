@@ -14,12 +14,10 @@ struct homepage: View {
                         Text(nickname)
                             .font(.largeTitle)
                             .fontWeight(.bold)
+                            .fontWeight(.bold)
                             .padding(.top, 20)
+                            .padding(.bottom, 20)
                     }
-                    
-                    CalendarView()
-                        .frame(minHeight: 410)
-                        .padding(.horizontal)
                     
                     Button(action: {
                         isJournalPresented = true
@@ -29,6 +27,7 @@ struct homepage: View {
                                 Text("Journal")
                                     .font(.system(size: 25))
                                     .fontWeight(.bold)
+                                    .foregroundColor(.white)
                                     .foregroundColor(.white)
                                 
                                 
@@ -43,15 +42,21 @@ struct homepage: View {
                             
                         }
                             .frame(maxWidth: .infinity)
-                            .frame(height: 70)
-                            .background(Color.blue)
-                            .cornerRadius(10)
+                            .frame(height: 80)
+                            .background(Color.blue.opacity(0.7))
+                            .cornerRadius(30)
                             .padding(.horizontal,20)
                             .shadow(radius: 5)
                     }
                     .sheet(isPresented: $isJournalPresented) {
                         Journal()
                     }
+                    
+                    CalendarView()
+                        .frame(minHeight: 410)
+                        .padding(.horizontal)
+                    
+                    
                     //add leaderboard here
                     
                     .padding(.bottom, 100) //spacing to help offset the tabbar

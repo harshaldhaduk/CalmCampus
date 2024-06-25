@@ -11,7 +11,8 @@ struct CalendarView: View {
             // Grey box behind the elements
             Rectangle()
                 .foregroundColor(Color.white)
-                .cornerRadius(10)
+                .cornerRadius(30)
+                .frame(height: 410)
                 .frame(height: 410)
                 .frame(width: 350)
                 .shadow(radius: 5)
@@ -73,7 +74,7 @@ struct CalendarGridView: View {
                         .font(.headline)
                         .fontWeight(.bold)
                         .frame(width: 30, height: 30)
-                        .background(Color.blue)
+                        .background(Color.blue.opacity(0.7))
                         .clipShape(Circle())
                         .foregroundColor(.white)
                 }
@@ -178,7 +179,7 @@ struct DateCell: View {
                 } else {
                     DispatchQueue.main.async {
                         if dateString == formatter.string(from: Date()) {
-                            moodColor = .blue // Set the current date to blue if no mood is detected
+                            moodColor = Color.blue.opacity(0.7) // Set the current date to blue if no mood is detected
                         } else {
                             moodColor = Color.gray.opacity(0.2) // Set a lighter shade of grey for past days with no recorded mood
                         }
@@ -191,13 +192,13 @@ struct DateCell: View {
     func updateMoodColor(_ mood: String) {
         switch mood {
         case "Happy":
-            moodColor = .green
+            moodColor = Color.green.opacity(0.8)
         case "Neutral":
-            moodColor = .yellow
+            moodColor = Color.yellow.opacity(0.7)
         case "Sad":
-            moodColor = .red
+            moodColor = Color.red.opacity(0.8)
         default:
-            moodColor = .blue
+            moodColor = Color.blue.opacity(0.7)
         }
     }
 }
