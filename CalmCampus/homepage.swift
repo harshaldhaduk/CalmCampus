@@ -19,6 +19,12 @@ struct homepage: View {
                             .padding(.bottom, 20)
                     }
                     
+                    ActivityTracker()
+                    
+                    CalendarView()
+                        .frame(minHeight: 410)
+                        .padding(.horizontal)
+                    
                     Button(action: {
                         isJournalPresented = true
                         }) {
@@ -46,20 +52,17 @@ struct homepage: View {
                             .background(Color.blue.opacity(0.7))
                             .cornerRadius(30)
                             .padding(.horizontal,20)
-                            .shadow(radius: 5)
+                            .shadow(color: Color.black.opacity(0.4), radius: 5, x: 0, y: 5)
                     }
                     .sheet(isPresented: $isJournalPresented) {
                         Journal()
                     }
-                    
-                    CalendarView()
-                        .frame(minHeight: 410)
-                        .padding(.horizontal)
+
                     
                     
                     //add leaderboard here
                     
-                    .padding(.bottom, 100) //spacing to help offset the tabbar
+                    .padding(.bottom, 30) //spacing to help offset the tabbar
             
                 }
                

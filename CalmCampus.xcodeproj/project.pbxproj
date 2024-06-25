@@ -57,12 +57,17 @@
 		413BA3812C16E61E006B3C1B /* keyboard.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 413BA3802C16E61E006B3C1B /* keyboard.mp3 */; };
 		413BA3832C181779006B3C1B /* foam.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 413BA3822C181779006B3C1B /* foam.mp3 */; };
 		413BA3872C181D3A006B3C1B /* marble.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 413BA3862C181D3A006B3C1B /* marble.mp3 */; };
+		413BA3892C229F90006B3C1B /* ProfilePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 413BA3882C229F90006B3C1B /* ProfilePage.swift */; };
+		413BA38B2C22B65A006B3C1B /* MoodGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 413BA38A2C22B65A006B3C1B /* MoodGraphView.swift */; };
 		413F3BAE2BA2BC78009C3F4A /* breathmed.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 413F3BAC2BA2BC78009C3F4A /* breathmed.mp3 */; };
 		414E38CB2ADDB086009ADA20 /* journal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414E38CA2ADDB086009ADA20 /* journal.swift */; };
 		415A60102B3817B200BA6ED7 /* breathawareness.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415A600F2B3817B200BA6ED7 /* breathawareness.swift */; };
 		415A60122B38193B00BA6ED7 /* movement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415A60112B38193B00BA6ED7 /* movement.swift */; };
 		415A60142B38194C00BA6ED7 /* mindfulness.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415A60132B38194C00BA6ED7 /* mindfulness.swift */; };
 		415A60162B38195500BA6ED7 /* loving.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415A60152B38195500BA6ED7 /* loving.swift */; };
+		41AB89F12C254FD10089597F /* ActivityGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AB89F02C254FD10089597F /* ActivityGraphView.swift */; };
+		41AB89F52C261DA50089597F /* ActivityTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AB89F42C261DA50089597F /* ActivityTracker.swift */; };
+		41AB89F72C26ABEF0089597F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AB89F62C26ABEF0089597F /* SettingsView.swift */; };
 		41B132D22AC154E70056BA15 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B132D12AC154E70056BA15 /* CalendarView.swift */; };
 		41B132D42AC156100056BA15 /* homepage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B132D32AC156100056BA15 /* homepage.swift */; };
 		41B132D82AC156480056BA15 /* relaxpage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B132D72AC156480056BA15 /* relaxpage.swift */; };
@@ -104,12 +109,17 @@
 		413BA3802C16E61E006B3C1B /* keyboard.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = keyboard.mp3; sourceTree = "<group>"; };
 		413BA3822C181779006B3C1B /* foam.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = foam.mp3; sourceTree = "<group>"; };
 		413BA3862C181D3A006B3C1B /* marble.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = marble.mp3; sourceTree = "<group>"; };
+		413BA3882C229F90006B3C1B /* ProfilePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePage.swift; sourceTree = "<group>"; };
+		413BA38A2C22B65A006B3C1B /* MoodGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodGraphView.swift; sourceTree = "<group>"; };
 		413F3BAC2BA2BC78009C3F4A /* breathmed.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = breathmed.mp3; sourceTree = "<group>"; };
 		414E38CA2ADDB086009ADA20 /* journal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = journal.swift; sourceTree = "<group>"; };
 		415A600F2B3817B200BA6ED7 /* breathawareness.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = breathawareness.swift; sourceTree = "<group>"; };
 		415A60112B38193B00BA6ED7 /* movement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = movement.swift; sourceTree = "<group>"; };
 		415A60132B38194C00BA6ED7 /* mindfulness.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mindfulness.swift; sourceTree = "<group>"; };
 		415A60152B38195500BA6ED7 /* loving.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loving.swift; sourceTree = "<group>"; };
+		41AB89F02C254FD10089597F /* ActivityGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityGraphView.swift; sourceTree = "<group>"; };
+		41AB89F42C261DA50089597F /* ActivityTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTracker.swift; sourceTree = "<group>"; };
+		41AB89F62C26ABEF0089597F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		41B132D12AC154E70056BA15 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		41B132D32AC156100056BA15 /* homepage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homepage.swift; sourceTree = "<group>"; };
 		41B132D72AC156480056BA15 /* relaxpage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = relaxpage.swift; sourceTree = "<group>"; };
@@ -235,12 +245,17 @@
 				41CE68772AAD1E9E009216BA /* CalmCampusApp.swift */,
 				41333A192AD263720033CA1A /* landing.swift */,
 				41CE68792AAD1E9E009216BA /* ContentView.swift */,
-				41B132D12AC154E70056BA15 /* CalendarView.swift */,
-				414E38CA2ADDB086009ADA20 /* journal.swift */,
 				41B132D32AC156100056BA15 /* homepage.swift */,
+				414E38CA2ADDB086009ADA20 /* journal.swift */,
+				41B132D12AC154E70056BA15 /* CalendarView.swift */,
+				41AB89F42C261DA50089597F /* ActivityTracker.swift */,
 				41B132D72AC156480056BA15 /* relaxpage.swift */,
-				41CE688C2AAD26AA009216BA /* TabBar.swift */,
 				415A600E2B38178F00BA6ED7 /* relax views */,
+				413BA3882C229F90006B3C1B /* ProfilePage.swift */,
+				41AB89F62C26ABEF0089597F /* SettingsView.swift */,
+				41CE688C2AAD26AA009216BA /* TabBar.swift */,
+				413BA38A2C22B65A006B3C1B /* MoodGraphView.swift */,
+				41AB89F02C254FD10089597F /* ActivityGraphView.swift */,
 				413F3BAD2BA2BC78009C3F4A /* Sounds */,
 				41CE687D2AAD1E9F009216BA /* Preview Content */,
 				41333A1B2AD273640033CA1A /* GoogleService-Info.plist */,
@@ -385,20 +400,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41AB89F72C26ABEF0089597F /* SettingsView.swift in Sources */,
 				415A60102B3817B200BA6ED7 /* breathawareness.swift in Sources */,
 				41CE687A2AAD1E9E009216BA /* ContentView.swift in Sources */,
 				415A60162B38195500BA6ED7 /* loving.swift in Sources */,
 				41D7C2732BA40F0500B01F94 /* mentalimagery.swift in Sources */,
 				41CE688D2AAD26AA009216BA /* TabBar.swift in Sources */,
+				41AB89F12C254FD10089597F /* ActivityGraphView.swift in Sources */,
 				41D7C2712BA40EF400B01F94 /* nature.swift in Sources */,
 				41B132D22AC154E70056BA15 /* CalendarView.swift in Sources */,
 				414E38CB2ADDB086009ADA20 /* journal.swift in Sources */,
 				41D7C26F2BA40E7A00B01F94 /* sensory.swift in Sources */,
 				415A60142B38194C00BA6ED7 /* mindfulness.swift in Sources */,
+				413BA3892C229F90006B3C1B /* ProfilePage.swift in Sources */,
 				41B132D42AC156100056BA15 /* homepage.swift in Sources */,
 				41CE68782AAD1E9E009216BA /* CalmCampusApp.swift in Sources */,
 				41D7C2752BA40F1000B01F94 /* artistic.swift in Sources */,
+				413BA38B2C22B65A006B3C1B /* MoodGraphView.swift in Sources */,
 				41333A1A2AD263720033CA1A /* landing.swift in Sources */,
+				41AB89F52C261DA50089597F /* ActivityTracker.swift in Sources */,
 				415A60122B38193B00BA6ED7 /* movement.swift in Sources */,
 				41B132D82AC156480056BA15 /* relaxpage.swift in Sources */,
 			);
@@ -533,11 +553,12 @@
 				DEVELOPMENT_ASSET_PATHS = "\"CalmCampus/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = CalmCampus;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -561,11 +582,12 @@
 				DEVELOPMENT_ASSET_PATHS = "\"CalmCampus/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = CalmCampus;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

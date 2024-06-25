@@ -28,19 +28,19 @@ struct Journal: View {
                 }
 
             TextEditor(text: $note)
-                .frame(
-                    width: UIScreen.main.bounds.width - 80, // Reduce width
-                    height: 140 // Reduce height
-                )
-                .padding()
-                .background(Color.white)
-                .cornerRadius(10)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color.blue, lineWidth: 2)
-                )
-                .padding()
-                .padding(.horizontal, 15)
+                            .frame(
+                                width: UIScreen.main.bounds.width - 65, // Reduce width
+                                height: 140 // Reduce height
+                            )
+                            .background(Color(UIColor.secondarySystemBackground)) // This only changes the background of the TextEditor frame
+                            .cornerRadius(10)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(Color.blue, lineWidth: 2)
+                            )
+                            .padding()
+                            .padding(.horizontal, 15)
+                            .scrollBackgroundColor(Color(UIColor.secondarySystemBackground))
 
             Button(action: {
                 saveNote()
@@ -62,7 +62,8 @@ struct Journal: View {
             }
             
         }
-        .padding()
+        .padding(.bottom, 41)
+        .background(Color(UIColor.secondarySystemBackground)).edgesIgnoringSafeArea(.all)
         .onAppear {
             // Load the note for the initially selected date
             loadNote()
@@ -118,6 +119,28 @@ struct Journal: View {
         }
     }
 }
+
+struct ScrollViewBackgroundColor: ViewModifier {
+    let color: Color
+
+    func body(content: Content) -> some View {
+        content
+           .background(
+                GeometryReader { geometry in
+                    color
+                       .frame(width: geometry.size.width, height: geometry.size.height)
+                       .edgesIgnoringSafeArea(.all)
+                }
+            )
+    }
+}
+
+extension View {
+    func scrollBackgroundColor(_ color: Color) -> some View {
+        self.modifier(ScrollViewBackgroundColor(color: color))
+    }
+}
+
 
 struct Journal_Previews: PreviewProvider {
     static var previews: some View {

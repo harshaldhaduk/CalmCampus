@@ -1,6 +1,9 @@
 import SwiftUI
+import Firebase
 
 struct relaxpage: View {
+    @State private var clickCounter = 0
+    
     var body: some View {
         NavigationView {
             ScrollView {
@@ -14,9 +17,8 @@ struct relaxpage: View {
                     
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 20) {
-                            // Meditation Session Boxes as Buttons in a Horizontal Scroll
                             ForEach(0..<4) { index in
-                                MeditationSessionButton(title: meditationTitles(index), imageName: index == 0 ? "breathe" : nil)
+                                MeditationSessionButton(title: meditationTitles(index), imageName: index == 0 ? "breathe" : nil, clickCounter: $clickCounter)
                             }
                         }
                         .padding(.horizontal)
@@ -35,9 +37,8 @@ struct relaxpage: View {
                     
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 20) {
-                            // Relaxation Session Boxes as Buttons in a Horizontal Scroll
-                            ForEach(0..<4) { index in
-                                RelaxationSessionButton(title: relaxationTitles(index))
+                            ForEach(0..<3) { index in
+                                RelaxationSessionButton(title: relaxationTitles(index), clickCounter: $clickCounter)
                             }
                         }
                         .padding(.horizontal)
@@ -54,60 +55,102 @@ struct relaxpage: View {
                         .padding(.horizontal)
                         .id("Featured")
                     
-                    ArticlesScrollView()
+                    ArticlesScrollView(clickCounter: $clickCounter)
                         .padding(.top, 10)
                         .padding(.horizontal)
                 }
             }
         }
+        .onAppear {
+            fetchClickCounterFromFirebase()
+        }
+        .onChange(of: clickCounter) { newValue in
+            updateClickCounterInFirebase(newValue)
+        }
+    }
+    
+    func meditationTitles(_ index: Int) -> String {
+        switch index {
+        case 0: return "Breath Awareness"
+        case 1: return "Movement-Based"
+        case 2: return "Mindfulness"
+        case 3: return "Loving-Kindness"
+        default: return "Meditation \(index + 1)"
+        }
+    }
+    
+    func relaxationTitles(_ index: Int) -> String {
+        switch index {
+        case 0: return "Relaxing Soundscapes"
+        case 1: return "Garden Creator"
+        case 2: return "Artistic Expression"
+        default: return "Relaxation \(index + 1)"
+        }
+    }
+    
+    func fetchClickCounterFromFirebase() {
+        guard let user = Auth.auth().currentUser else { return }
+        
+        let db = Firestore.firestore()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let dateString = dateFormatter.string(from: Date())
+        
+        let userActivityRef = db.collection("users").document(user.uid).collection("activity").document(dateString)
+        
+        userActivityRef.getDocument { snapshot, error in
+            if let error = error {
+                print("Error fetching document: \(error)")
+                return
+            }
+            
+            if let data = snapshot?.data(), let clickCounter = data["clickCounter"] as? Int {
+                self.clickCounter = clickCounter
+            }
+        }
+    }
+    
+    func updateClickCounterInFirebase(_ count: Int) {
+        guard let user = Auth.auth().currentUser else { return }
+        let db = Firestore.firestore()
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let dateString = dateFormatter.string(from: Date())
+
+        let userActivityRef = db.collection("users").document(user.uid).collection("activity").document(dateString)
+
+        userActivityRef.setData(["clickCounter": count], merge: true)
     }
 }
 
-func meditationTitles(_ index: Int) -> String {
-    switch index {
-    case 0: return "Breath Awareness"
-    case 1: return "Movement-Based"
-    case 2: return "Mindfulness"
-    case 3: return "Loving-Kindness"
-    default: return "Meditation \(index + 1)"
-    }
-}
-
-func relaxationTitles(_ index: Int) -> String {
-    switch index {
-    case 0: return "Relaxing Soundscapes"
-    case 1: return "Garden Creator"
-    case 2: return "Artistic Expression"
-    case 3: return "Mental Imagery"
-    default: return "Relaxation \(index + 1)"
-    }
-}
 
 struct MeditationSessionButton: View {
     var title: String
     var imageName: String?
+    @Binding var clickCounter: Int
     
     var body: some View {
         Group {
             if title == "Breath Awareness" {
-                NavigationLink(destination: breathawareness()) {
+                NavigationLink(destination: breathawareness().onAppear { incrementCounter() }) {
                     buttonContent
                 }
             } else if title == "Movement-Based" {
-                NavigationLink(destination: movement()) {
+                NavigationLink(destination: movement().onAppear { incrementCounter() }) {
                     buttonContent
                 }
             } else if title == "Mindfulness" {
-                NavigationLink(destination: mindfulness()) {
+                NavigationLink(destination: mindfulness().onAppear { incrementCounter() }) {
                     buttonContent
                 }
-            }
-            else if title == "Loving-Kindness" {
-                NavigationLink(destination: loving()) {
+            } else if title == "Loving-Kindness" {
+                NavigationLink(destination: loving().onAppear { incrementCounter() }) {
                     buttonContent
                 }
             } else {
                 Button(action: {
+                    incrementCounter()
                     // Action when the button is clicked for default cases
                 }) {
                     buttonContent
@@ -175,8 +218,12 @@ struct MeditationSessionButton: View {
         }
         .frame(width: 200, height: 130)
         .background(Color.white)
-        .cornerRadius(10)
+        .cornerRadius(20)
         .shadow(color: Color.black.opacity(0.4), radius: 5, x: 0, y: 5) // Adjusted drop shadow
+    }
+    
+    func incrementCounter() {
+        clickCounter += 1
     }
 }
 
@@ -184,12 +231,14 @@ struct RelaxationSessionButton: View {
     var title: String
     var imageName: String?
     @State private var showFullScreen = false
+    @Binding var clickCounter: Int
 
     var body: some View {
         Group {
             if title == "Relaxing Soundscapes" {
                 Button(action: {
                     showFullScreen = true
+                    incrementCounter()
                 }) {
                     buttonContent
                 }
@@ -212,6 +261,7 @@ struct RelaxationSessionButton: View {
             } else if title == "Garden Creator" {
                 Button(action: {
                     showFullScreen = true
+                    incrementCounter()
                 }) {
                     buttonContent
                 }
@@ -234,6 +284,7 @@ struct RelaxationSessionButton: View {
             } else if title == "Artistic Expression" {
                 Button(action: {
                     showFullScreen = true
+                    incrementCounter()
                 }) {
                     buttonContent
                 }
@@ -253,30 +304,9 @@ struct RelaxationSessionButton: View {
                             }
                     }
                 }
-            } else if title == "Mental Imagery" {
-                Button(action: {
-                    showFullScreen = true
-                }) {
-                    buttonContent
-                }
-               .fullScreenCover(isPresented: $showFullScreen) {
-                    NavigationView {
-                        mentalimagery().edgesIgnoringSafeArea(.all)
-                           .navigationBarBackButtonHidden(true)
-                           .toolbar {
-                                ToolbarItem(placement:.navigationBarLeading) {
-                                    Button(action: {
-                                        showFullScreen = false
-                                    }) {
-                                        Image(systemName: "chevron.backward")
-                                           .imageScale(.large)
-                                    }
-                                }
-                            }
-                    }
-                }
             } else {
                 Button(action: {
+                    incrementCounter()
                     // Action when the button is clicked for default cases
                 }) {
                     buttonContent
@@ -284,7 +314,7 @@ struct RelaxationSessionButton: View {
             }
         }
     }
-    
+
     var buttonContent: some View {
         ZStack {
             if title == "Relaxing Soundscapes" {
@@ -320,8 +350,8 @@ struct RelaxationSessionButton: View {
                             .edgesIgnoringSafeArea(.all)
                     )
                     .blur(radius: 0) // Blur the image
-            } else if title == "Mental Imagery" {
-                Image("mental")
+            } else if let imageName = imageName {
+                Image(imageName)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 200, height: 130)
@@ -344,131 +374,133 @@ struct RelaxationSessionButton: View {
         }
         .frame(width: 200, height: 130)
         .background(Color.white)
-        .cornerRadius(10)
+        .cornerRadius(20)
         .shadow(color: Color.black.opacity(0.4), radius: 5, x: 0, y: 5) // Adjusted drop shadow
     }
+    
+    func incrementCounter() {
+        clickCounter += 1
+    }
 }
+
 
 struct ArticlesScrollView: View {
     @State private var isArticle1Presented = false
     @State private var isArticle2Presented = false
     @State private var isArticle3Presented = false
+    @Binding var clickCounter: Int
 
     var body: some View {
-        
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 20) {
-                
-                //Article 1
-                
+                // Article 1
                 Button(action: {
                     isArticle1Presented = true
+                    incrementCounter()
                 }) {
                     VStack {
                         ZStack {
-                                    RoundedRectangle(cornerRadius: 10)
-                                       .fill(Color.gray)
-                                       .frame(height: 52) // Set the height of the blue box
-                                    
-                                    Text("The Power of Mindfulness in Everyday Life")
-                                       .font(.headline)
-                                       .foregroundColor(.white)
-                                       .padding(.horizontal, 10)
-                                }
-                        
+                            RoundedRectangle(cornerRadius: 10)
+                                .fill(Color.blue.opacity(0.7))
+                                .frame(height: 52)
+                            Text("The Power of Mindfulness in Everyday Life")
+                                .font(.headline)
+                                .foregroundColor(.white)
+                                .padding(.horizontal, 10)
+                        }
                         Text("Discover how simple mindfulness techniques can transform your daily routine and improve your mental well-being.")
                             .padding(.top, 10)
                             .foregroundColor(.gray)
                             .padding(.horizontal)
-                        
                         Spacer()
                     }
                     .padding(.top, 20)
                     .padding(.horizontal, 10)
                     .frame(width: 250, height: 250)
-                    .background(Color.white)
-                    .cornerRadius(10)
-                    .shadow(color: Color.black.opacity(0.2), radius: 3, x: 0, y: 0)
+                    .background(Color(UIColor.secondarySystemBackground))
+                    .cornerRadius(20)
+                    .shadow(color: Color.black.opacity(0.4), radius: 5, x: 0, y: 5)
                 }
                 .sheet(isPresented: $isArticle1Presented) {
                     Article1()
                 }
                 
-                //Article 2
-                
+                // Article 2
                 Button(action: {
                     isArticle2Presented = true
+                    incrementCounter()
                 }) {
                     VStack {
                         ZStack {
-                                    RoundedRectangle(cornerRadius: 10)
-                                       .fill(Color.gray)
-                                       .frame(height: 52) // Set the height of the blue box
-                                    
-                                    Text("Breaking the Cycle of Stress")
-                                       .font(.headline)
-                                       .foregroundColor(.white)
-                                       .padding(.horizontal, 10)
-                                }
-                        
+                            RoundedRectangle(cornerRadius: 10)
+                                .fill(Color.blue.opacity(0.7))
+                                .frame(height: 52)
+                            Text("Breaking the Cycle of Stress")
+                                .font(.headline)
+                                .foregroundColor(.white)
+                                .padding(.horizontal, 10)
+                        }
                         Text("Discover how simple mindfulness techniques can transform your daily routine and improve your mental well-being.")
                             .padding(.top, 10)
                             .foregroundColor(.gray)
                             .padding(.horizontal)
-                        
                         Spacer()
                     }
                     .padding(.top, 20)
                     .padding(.horizontal, 10)
                     .frame(width: 250, height: 250)
-                    .background(Color.white)
-                    .cornerRadius(10)
-                    .shadow(color: Color.black.opacity(0.2), radius: 3, x: 0, y: 0)
+                    .background(Color(UIColor.secondarySystemBackground))
+                    .cornerRadius(20)
+                    .shadow(color: Color.black.opacity(0.4), radius: 5, x: 0, y: 5)
                 }
                 .sheet(isPresented: $isArticle2Presented) {
                     Article2()
                 }
                 
                 // Article 3
-                
                 Button(action: {
                     isArticle3Presented = true
+                    incrementCounter()
                 }) {
                     VStack {
                         ZStack {
-                                    RoundedRectangle(cornerRadius: 10)
-                                       .fill(Color.gray)
-                                       .frame(height: 52) // Set the height of the blue box
-                                    
-                                    Text("Meditation for Beginners: A Simple Guide")
-                                       .font(.headline)
-                                       .foregroundColor(.white)
-                                       .padding(.horizontal, 10)
-                                }
-                        
+                            RoundedRectangle(cornerRadius: 10)
+                                .fill(Color.blue.opacity(0.7))
+                                .frame(height: 52)
+                            Text("Meditation for Beginners: A Simple Guide")
+                                .font(.headline)
+                                .foregroundColor(.white)
+                                .padding(.horizontal, 10)
+                        }
                         Text("Discover the basics of meditation with this simple guide for beginners and start your journey toward inner peace and relaxation.")
                             .padding(.top, 10)
-                            .foregroundColor(.gray)
+                            .foregroundColor(Color.gray)
                             .padding(.horizontal)
-                        
                         Spacer()
                     }
                     .padding(.top, 20)
                     .padding(.horizontal, 10)
                     .frame(width: 250, height: 250)
-                    .background(Color.white)
-                    .cornerRadius(10)
-                    .shadow(color: Color.black.opacity(0.2), radius: 3, x: 0, y: 0)
+                    .background(Color(UIColor.secondarySystemBackground))
+                    .cornerRadius(20)
+                    .shadow(color: Color.black.opacity(0.4), radius: 5, x: 0, y: 5)
                 }
                 .sheet(isPresented: $isArticle3Presented) {
                     Article3()
                 }
             }
             .padding(.top, 5)
-            .padding(.bottom, 50)
+            .padding(.bottom, 30)
         }
+        .edgesIgnoringSafeArea(.horizontal)
+    }
+
+    private func incrementCounter() {
+        clickCounter += 1
     }
 }
+
+
 
 
 //ALL ARTICLES BELOW
@@ -529,7 +561,7 @@ struct Article1: View {
                     .fixedSize(horizontal: false, vertical: true)
                     .padding()
             }
-            .background(Color.white)
+            .background(Color(UIColor.secondarySystemBackground))
             .edgesIgnoringSafeArea(.all)
         }
     }
@@ -572,7 +604,7 @@ struct Article2: View {
                     .padding()
             
             }
-            .background(Color.white)
+            .background(Color(UIColor.secondarySystemBackground))
             .edgesIgnoringSafeArea(.all)
         }
     }
@@ -641,7 +673,7 @@ struct Article3: View {
                     .padding()
             
             }
-            .background(Color.white)
+            .background(Color(UIColor.secondarySystemBackground))
             .edgesIgnoringSafeArea(.all)
         }
     }

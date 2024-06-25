@@ -30,7 +30,7 @@ struct landing: View {
                         .foregroundColor(.white)
                         .padding()
                         .frame(maxWidth: .infinity)
-                        .background(Color.blue)
+                        .background(Color.blue.opacity(0.7))
                         .cornerRadius(10)
                         .padding(.horizontal, 20)
                 }
@@ -45,7 +45,7 @@ struct landing: View {
                         Text("Log In")
                             .padding(.top, 10)
                             .font(.headline)
-                            .foregroundColor(.blue) // Use a less prominent color for the login button
+                            .foregroundColor(.blue.opacity(0.7)) // Use a less prominent color for the login button
                     }
                 }
                 .padding(.bottom, 20)
@@ -64,7 +64,7 @@ struct NameInputView: View {
 
     var body: some View {
         VStack {
-            Text("It's great to see you! What do your friends call you?")
+            Text("It's great to see you! What would you like to be called?")
                 .multilineTextAlignment(.center)
                 .font(.largeTitle)
                 .fontWeight(.bold)
@@ -80,7 +80,7 @@ struct NameInputView: View {
                     .foregroundColor(.white)
                     .padding()
                     .frame(maxWidth: .infinity)
-                    .background(Color.blue)
+                    .background(Color.blue.opacity(0.7))
                     .cornerRadius(10)
                     .padding(.horizontal, 20)
             }
@@ -112,7 +112,7 @@ struct EmailInputView: View {
                     .foregroundColor(.white)
                     .padding()
                     .frame(maxWidth: .infinity)
-                    .background(Color.blue)
+                    .background(Color.blue.opacity(0.7))
                     .cornerRadius(10)
                     .padding(.horizontal, 20)
             }
@@ -146,7 +146,10 @@ struct PasswordSetupView: View {
 
             SecureField("Confirm Password", text: $confirmPassword)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
+                .padding(.bottom, 25)
+                .padding(.horizontal)
+                .padding(.top, 5)
+            
             // Password validation messages
             if !isPasswordValid {
                 Text("Password should be at least 6 characters long")
@@ -187,7 +190,7 @@ struct PasswordSetupView: View {
                                 let userRef = db.collection("users").document(uid)
 
                                 // Store user-specific data
-                                userRef.setData(["nickname": name]) { error in
+                                userRef.setData(["nickname": name, "isDarkMode": false]) { error in
                                     if let error = error {
                                         print("Error storing user data in Firestore: \(error.localizedDescription)")
                                     } else {
@@ -210,7 +213,7 @@ struct PasswordSetupView: View {
                            .foregroundColor(.white)
                            .padding()
                            .frame(maxWidth: .infinity)
-                           .background(Color.green)
+                           .background(Color.green.opacity(0.7))
                            .cornerRadius(10)
                            .padding(.horizontal, 20)
                    }
@@ -244,7 +247,9 @@ struct LoginView: View {
 
             SecureField("Password", text: $password)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
+                .padding(.bottom, 25)
+                .padding(.horizontal)
+                .padding(.top, 5)
 
             Button(action: {
                 // Reset error flags
@@ -265,6 +270,26 @@ struct LoginView: View {
                         }
                     } else {
                         // Login successful, set isSignedIn to true to navigate to the home page
+                        if let uid = Auth.auth().currentUser?.uid {
+                            let db = Firestore.firestore()
+                            let userRef = db.collection("users").document(uid)
+
+                            // Retrieve the user's dark mode preference
+                            userRef.getDocument { document, error in
+                                if let document = document, document.exists {
+                                    if let isDarkMode = document.data()?["isDarkMode"] as? Bool {
+                                        UserDefaults.standard.set(isDarkMode, forKey: "isDarkMode")
+                                        
+                                        // Update UI appearance based on dark mode preference
+                                        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+                                            windowScene.windows.first?.overrideUserInterfaceStyle = isDarkMode ? .dark : .light
+                                        }
+                                    }
+                                } else {
+                                    print("Document does not exist")
+                                }
+                            }
+                        }
                         isSignedIn = true
                     }
                 }
@@ -274,7 +299,7 @@ struct LoginView: View {
                     .foregroundColor(.white)
                     .padding()
                     .frame(maxWidth: .infinity)
-                    .background(Color.green)
+                    .background(Color.green.opacity(0.7))
                     .cornerRadius(10)
                     .padding(.horizontal, 20)
             }
@@ -289,7 +314,7 @@ struct LoginView: View {
         .padding()
         .alert(isPresented: $isInvalidEmail) {
             Alert(
-                title: Text("Oops!"),
+                title: Text("Sorry, Incorrect Information!"),
                 message: Text(loginErrors.joined(separator: "\n")),
                 dismissButton: .default(Text("OK"))
             )

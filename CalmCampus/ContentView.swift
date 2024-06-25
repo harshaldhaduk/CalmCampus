@@ -2,12 +2,6 @@ import SwiftUI
 import FirebaseFirestore
 import FirebaseAuth
 
-struct ProfileView: View {
-    var body: some View {
-        Text("Profile View")
-    }
-}
-
 struct ContentView: View {
     @State private var isLoading = true
     @State private var isShowingPopup = false
@@ -32,7 +26,7 @@ struct ContentView: View {
                         }
                         .tag(1)
 
-                    ProfileView()
+                    ProfilePage()
                         .tabItem {
                             Image(systemName: "person.fill")
                             Text("Profile")
@@ -179,7 +173,7 @@ struct MoodPopupView: View {
         }
         .frame(width: 300, height: 150)
         .padding()
-        .background(Color.white)
+        .background(Color(UIColor.secondarySystemBackground))
         .cornerRadius(10)
         .padding(EdgeInsets(top: 150, leading: 10, bottom: 100, trailing: 10))
         .shadow(radius: 5)

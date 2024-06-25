@@ -10,13 +10,12 @@ struct CalendarView: View {
         ZStack {
             // Grey box behind the elements
             Rectangle()
-                .foregroundColor(Color.white)
+                .foregroundColor(Color(UIColor.secondarySystemBackground))
                 .cornerRadius(30)
                 .frame(height: 410)
                 .frame(height: 410)
                 .frame(width: 350)
-                .shadow(radius: 5)
-            
+                .shadow(color: Color.black.opacity(0.4), radius: 5, x: 0, y: 5)
             VStack {
                 Spacer() // Add spacer above the VStack
                 
