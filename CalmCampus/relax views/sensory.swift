@@ -10,7 +10,7 @@ struct sensory: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 20) {
-                Text("Ambiance 🍃")
+                Text("Ambiance")
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .padding(.top, 60)
@@ -41,7 +41,7 @@ struct sensory: View {
                                                         Image("foresticon")
                                                             .resizable()
                                                             .clipped()
-                                                            .cornerRadius(10)
+                                                            .cornerRadius(20)
                                                             .frame(width: 75, height: 75)
 
                                                         if self.selectedButton == "forest" && self.isPlaying {
@@ -77,7 +77,7 @@ struct sensory: View {
                                                         Image("watericon")
                                                             .resizable()
                                                             .clipped()
-                                                            .cornerRadius(10)
+                                                            .cornerRadius(20)
                                                             .frame(width: 75, height: 75)
 
                                                         if self.selectedButton == "water" && self.isPlaying {
@@ -113,7 +113,7 @@ struct sensory: View {
                                                         Image("fireicon")
                                                             .resizable()
                                                             .clipped()
-                                                            .cornerRadius(10)
+                                                            .cornerRadius(20)
                                                             .frame(width: 75, height: 75)
 
                                                         if self.selectedButton == "fire" && self.isPlaying {
@@ -149,7 +149,7 @@ struct sensory: View {
                                                         Image("libraryicon")
                                                             .resizable()
                                                             .clipped()
-                                                            .cornerRadius(10)
+                                                            .cornerRadius(20)
                                                             .frame(width: 75, height: 75)
 
                                                         if self.selectedButton == "library" && self.isPlaying {
@@ -167,11 +167,12 @@ struct sensory: View {
                     .padding(.horizontal)
                     .padding(.bottom,5)
                 }
+                .background(Color(.blue))
 
                 Divider()
                     .padding(.horizontal)
 
-                Text("Animals 🕊️")
+                Text("Animals")
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .padding(.top, 10)
@@ -202,7 +203,7 @@ struct sensory: View {
                                                         Image("frogsicon")
                                                             .resizable()
                                                             .clipped()
-                                                            .cornerRadius(10)
+                                                            .cornerRadius(20)
                                                             .frame(width: 75, height: 75)
 
                                                         if self.selectedButton == "frogs" && self.isPlaying {
@@ -238,7 +239,7 @@ struct sensory: View {
                                                         Image("owlicon")
                                                             .resizable()
                                                             .clipped()
-                                                            .cornerRadius(10)
+                                                            .cornerRadius(20)
                                                             .frame(width: 75, height: 75)
 
                                                         if self.selectedButton == "owl" && self.isPlaying {
@@ -274,7 +275,7 @@ struct sensory: View {
                                                         Image("whaleicon")
                                                             .resizable()
                                                             .clipped()
-                                                            .cornerRadius(10)
+                                                            .cornerRadius(20)
                                                             .frame(width: 75, height: 75)
 
                                                         if self.selectedButton == "whale" && self.isPlaying {
@@ -296,7 +297,7 @@ struct sensory: View {
                 Divider()
                     .padding(.horizontal)
 
-                Text("Weather 🌦️")
+                Text("Weather")
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .padding(.top, 10)
@@ -327,7 +328,7 @@ struct sensory: View {
                                                         Image("windicon")
                                                             .resizable()
                                                             .clipped()
-                                                            .cornerRadius(10)
+                                                            .cornerRadius(20)
                                                             .frame(width: 75, height: 75)
 
                                                         if self.selectedButton == "wind" && self.isPlaying {
@@ -363,7 +364,7 @@ struct sensory: View {
                                                         Image("rainicon")
                                                             .resizable()
                                                             .clipped()
-                                                            .cornerRadius(10)
+                                                            .cornerRadius(20)
                                                             .frame(width: 75, height: 75)
 
                                                         if self.selectedButton == "rain" && self.isPlaying {
@@ -399,7 +400,7 @@ struct sensory: View {
                                                         Image("thundericon")
                                                             .resizable()
                                                             .clipped()
-                                                            .cornerRadius(10)
+                                                            .cornerRadius(20)
                                                             .frame(width: 75, height: 75)
 
                                                         if self.selectedButton == "thunder" && self.isPlaying {
@@ -435,7 +436,7 @@ struct sensory: View {
                                                         Image("hailicon")
                                                             .resizable()
                                                             .clipped()
-                                                            .cornerRadius(10)
+                                                            .cornerRadius(20)
                                                             .frame(width: 75, height: 75)
 
                                                         if self.selectedButton == "hail" && self.isPlaying {
@@ -457,7 +458,7 @@ struct sensory: View {
                 Divider()
                     .padding(.horizontal)
 
-                Text("Footsteps 🐾")
+                Text("Footsteps")
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .padding(.top, 10)
@@ -488,7 +489,7 @@ struct sensory: View {
                                                         Image("gravelicon")
                                                             .resizable()
                                                             .clipped()
-                                                            .cornerRadius(10)
+                                                            .cornerRadius(20)
                                                             .frame(width: 75, height: 75)
 
                                                         if self.selectedButton == "gravel" && self.isPlaying {
@@ -524,7 +525,7 @@ struct sensory: View {
                                                         Image("dirticon")
                                                             .resizable()
                                                             .clipped()
-                                                            .cornerRadius(10)
+                                                            .cornerRadius(20)
                                                             .frame(width: 75, height: 75)
 
                                                         if self.selectedButton == "dirt" && self.isPlaying {
@@ -560,7 +561,7 @@ struct sensory: View {
                                                         Image("sandicon")
                                                             .resizable()
                                                             .clipped()
-                                                            .cornerRadius(10)
+                                                            .cornerRadius(20)
                                                             .frame(width: 75, height: 75)
 
                                                         if self.selectedButton == "sand" && self.isPlaying {
@@ -596,7 +597,7 @@ struct sensory: View {
                                                         Image("mudicon")
                                                             .resizable()
                                                             .clipped()
-                                                            .cornerRadius(10)
+                                                            .cornerRadius(20)
                                                             .frame(width: 75, height: 75)
 
                                                         if self.selectedButton == "mud" && self.isPlaying {
@@ -632,7 +633,7 @@ struct sensory: View {
                                                         Image("snowicon")
                                                             .resizable()
                                                             .clipped()
-                                                            .cornerRadius(10)
+                                                            .cornerRadius(20)
                                                             .frame(width: 75, height: 75)
 
                                                         if self.selectedButton == "snow" && self.isPlaying {
@@ -654,7 +655,7 @@ struct sensory: View {
                 Divider()
                     .padding(.horizontal)
 
-                Text("ASMR 🔉")
+                Text("ASMR")
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .padding(.top, 10)
@@ -685,7 +686,7 @@ struct sensory: View {
                                                         Image("marbleicon")
                                                             .resizable()
                                                             .clipped()
-                                                            .cornerRadius(10)
+                                                            .cornerRadius(20)
                                                             .frame(width: 75, height: 75)
 
                                                         if self.selectedButton == "marble" && self.isPlaying {
@@ -721,7 +722,7 @@ struct sensory: View {
                                                         Image("keyboardicon")
                                                             .resizable()
                                                             .clipped()
-                                                            .cornerRadius(10)
+                                                            .cornerRadius(20)
                                                             .frame(width: 75, height: 75)
 
                                                         if self.selectedButton == "keyboard" && self.isPlaying {
@@ -757,7 +758,7 @@ struct sensory: View {
                                                         Image("foamicon")
                                                             .resizable()
                                                             .clipped()
-                                                            .cornerRadius(10)
+                                                            .cornerRadius(20)
                                                             .frame(width: 75, height: 75)
 
                                                         if self.selectedButton == "foam" && self.isPlaying {
@@ -793,7 +794,7 @@ struct sensory: View {
                                                         Image("markericon")
                                                             .resizable()
                                                             .clipped()
-                                                            .cornerRadius(10)
+                                                            .cornerRadius(20)
                                                             .frame(width: 75, height: 75)
 
                                                         if self.selectedButton == "marker" && self.isPlaying {

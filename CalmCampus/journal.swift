@@ -60,9 +60,8 @@ struct Journal: View {
                     dismissButton: .default(Text("OK"))
                 )
             }
-            
+            Spacer()
         }
-        .padding(.bottom, 41)
         .background(Color(UIColor.secondarySystemBackground)).edgesIgnoringSafeArea(.all)
         .onAppear {
             // Load the note for the initially selected date

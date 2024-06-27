@@ -8,101 +8,115 @@ struct ProfilePage: View {
 
     var body: some View {
         NavigationView {
+            
+            ScrollView {
                 VStack(spacing: 20) {
+                    
                     HStack(alignment:.center) {
                         Circle()
-                          .fill(Color.white)
-                          .frame(width: 80, height: 80)
-                          
-                          .overlay(
+                            .fill(Color.white)
+                            .frame(width: 80, height: 80)
+                        
+                            .overlay(
                                 Image("defaultpfp")
-                                  .resizable()
-                                  .aspectRatio(contentMode:.fill)
-                                  .frame(width: 100, height: 100)
-                                  .clipShape(Circle())
+                                    .resizable()
+                                    .aspectRatio(contentMode:.fill)
+                                    .frame(width: 100, height: 100)
+                                    .clipShape(Circle())
                             )
-
+                        
                         VStack(alignment:.leading) {
                             if let nickname = userNickname {
                                 Text(nickname)
-                                  .font(.system(size: 30))
-                                  .fontWeight(.bold)
-                                  .padding(.bottom, 0.5)
+                                    .font(.system(size: 30))
+                                    .fontWeight(.bold)
+                                    .padding(.bottom, 0.5)
                             } else {
                                 Text("Loading...")
-                                  .font(.title)
-                                  .fontWeight(.bold)
-                                  .padding(.bottom, 0.5)
+                                    .font(.title)
+                                    .fontWeight(.bold)
+                                    .padding(.bottom, 0.5)
                             }
-
+                            
                             Button(action: {
                                 isSettingsPresented = true
                             }) {
                                 HStack {
                                     Image(systemName: "gear")
-                                      .font(.system(size: 20))
-                                      .foregroundColor(.blue)
+                                        .font(.system(size: 20))
+                                        .foregroundColor(.blue)
                                     Text("Settings")
-                                      .font(.system(size: 17))
-                                      .foregroundColor(.blue)
+                                        .font(.system(size: 17))
+                                        .foregroundColor(.blue)
                                 }
-                              .foregroundColor(.primary)
+                                .foregroundColor(.primary)
                             }
-                          .sheet(isPresented: $isSettingsPresented) {
+                            .sheet(isPresented: $isSettingsPresented) {
                                 SettingsView()
                             }
                         }
-                      .padding(.leading, 20)
+                        .padding(.leading, 20)
                         Spacer()
                     }
-                  .padding(.horizontal, 20)
-                  .padding(.top, 1)
-
+                    .padding(.horizontal, 20)
+                    .padding(.top, 30)
+                    
+                    
+                    
                     RoundedRectangle(cornerRadius: 30)
-                       .fill(Color.green.opacity(0.7))
-                       .frame(height: 270)
-                       .padding(.horizontal, 20)
-                       .overlay(
+                        .fill(Color.green.opacity(0.7))
+                        .frame(height: 290)
+                        .padding(.horizontal, 20)
+                        .overlay(
                             VStack {
                                 Text("Your Mood Scores Over Time")
-                                   .font(.system(size: 18))
-                                   .fontWeight(.bold)
-                                   .foregroundColor(.white)
-                                   .padding(.top, 15)
+                                    .font(.system(size: 18))
+                                    .fontWeight(.bold)
+                                    .foregroundColor(.white)
+                                    .padding(.top, 15)
                                 
                                 MoodGraphView()
                                 
-                               .padding(.horizontal, 20)
+                                    .padding(.horizontal, 20)
                             }
                         )
+                        .padding(.top, 15)
+                    
+                    
                     
                     RoundedRectangle(cornerRadius: 30)
-                       .fill(Color.blue.opacity(0.7))
-                       .frame(height: 270)
-                       .padding(.horizontal, 20)
-                       .overlay(
+                        .fill(Color.blue.opacity(0.7))
+                        .frame(height: 290)
+                        .padding(.horizontal, 20)
+                        .overlay(
                             VStack {
                                 Text("Activities Completed Log")
-                                   .font(.system(size: 18))
-                                   .fontWeight(.bold)
-                                   .foregroundColor(.white)
-                                   .padding(.top, 20)
+                                    .font(.system(size: 18))
+                                    .fontWeight(.bold)
+                                    .foregroundColor(.white)
+                                    .padding(.top, 20)
                                 
                                 ActivityGraphView()
-
                                 
-                               .padding(.horizontal, 20)
+                                
+                                    .padding(.horizontal, 20)
                                 
                             }
                         )
+                        .padding(.bottom,15)
+                        .padding(.top, 10)
+                    
+                    Spacer()
                     
                     
                 }
             }
-           .onAppear {
+            .onAppear {
                 fetchNicknameFromFirebase()
             }
+        }
     }
+    
 
     func fetchNicknameFromFirebase() {
         let db = Firestore.firestore()

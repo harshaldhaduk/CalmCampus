@@ -64,11 +64,18 @@ struct NameInputView: View {
 
     var body: some View {
         VStack {
-            Text("It's great to see you! What would you like to be called?")
-                .multilineTextAlignment(.center)
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .padding()
+            if #available(iOS 16.0, *) {
+                Text("It's great to see you! What would you like to be called?")
+                    .multilineTextAlignment(.center)
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .padding()
+            } else {
+                Text("It's great to see you! What would you like to be called?")
+                    .multilineTextAlignment(.center)
+                    .font(.system(size: 34, weight: .bold, design: .default))
+                    .padding()
+            }
 
             TextField("Your nickname", text: $name)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -96,11 +103,19 @@ struct EmailInputView: View {
 
     var body: some View {
         VStack {
-            Text("What email do you want to use to sign in?")
-                .multilineTextAlignment(.center)
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .padding()
+            if #available(iOS 16.0, *) {
+                Text("What email do you want to use to sign in?")
+                    .multilineTextAlignment(.center)
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .padding()
+            } else {
+                Text("What email do you want to use to sign in?")
+                    .multilineTextAlignment(.center)
+                    .font(.largeTitle)
+                    .font(.system(size: 34, weight: .bold, design: .default))
+                    .padding()
+            }
 
             TextField("Email", text: $email)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -234,11 +249,19 @@ struct LoginView: View {
 
     var body: some View {
         VStack {
-            Text("Log in to CalmCampus")
-                .multilineTextAlignment(.center)
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .padding()
+            if #available(iOS 16.0, *) {
+                Text("Log in to CalmCampus")
+                    .multilineTextAlignment(.center)
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .padding()
+            } else {
+                Text("Log in to CalmCampus")
+                    .multilineTextAlignment(.center)
+                    .font(.largeTitle)
+                    .font(.system(size: 34, weight: .bold, design: .default))
+                    .padding()
+            }
 
             TextField("Email", text: $email)
                 .textFieldStyle(RoundedBorderTextFieldStyle())

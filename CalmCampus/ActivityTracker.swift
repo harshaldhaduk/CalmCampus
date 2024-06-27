@@ -11,17 +11,8 @@ struct ActivityTracker: View {
     var body: some View {
         ZStack {
             // Grey box behind the elements
-            Rectangle()
-                .foregroundColor(Color(UIColor.secondarySystemBackground))
-                .cornerRadius(30)
-                .frame(height: 230)
-                .shadow(color: Color.black.opacity(0.4), radius: 5, x: 0, y: 5)
 
             VStack {
-                Text("Activity Tracker")
-                    .font(.title)
-                    .fontWeight(.semibold)
-                    .padding(.bottom, 30)
 
                 HStack(spacing: 20) {
                     CircularProgressBar(progress: Double(clickCounter) / Double(activityGoal), activityGoal: activityGoal)
@@ -41,6 +32,7 @@ struct ActivityTracker: View {
                     }
                 }
                 .padding(.bottom, 5)
+                .padding(.horizontal, 15)
             }
             .onAppear {
                 loadClickCounterFromFirebase()
@@ -49,7 +41,6 @@ struct ActivityTracker: View {
                 GoalInputView(activityGoal: $activityGoal, newGoal: $newGoal, showGoalInput: $showGoalInput)
             }
         }
-        .frame(width: 350, height: 230)
     }
 
     func loadClickCounterFromFirebase() {

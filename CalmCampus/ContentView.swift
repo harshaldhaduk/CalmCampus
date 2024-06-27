@@ -19,12 +19,21 @@ struct ContentView: View {
                             Text("Home")
                         }
 
-                    relaxpage()
-                        .tabItem {
-                            Image(systemName: "figure.mind.and.body")
-                            Text("Relax")
+                        if #available(iOS 16.0, *) {
+                            relaxpage()
+                            .tabItem {
+                                Image(systemName: "figure.mind.and.body")
+                                Text("Relax")
+                            }
+                            .tag(1)
+                        } else {
+                            relaxpage()
+                            .tabItem {
+                                Image(systemName: "peacesign")
+                                Text("Relax")
+                            }
+                            .tag(1)
                         }
-                        .tag(1)
 
                     ProfilePage()
                         .tabItem {

@@ -19,11 +19,34 @@ struct homepage: View {
                             .padding(.bottom, 20)
                     }
                     
-                    ActivityTracker()
+                    RoundedRectangle(cornerRadius: 30)
+                       .fill(Color(UIColor.secondarySystemBackground))
+                       .frame(height: 250)
+                       .padding(.horizontal, 20)
+                       .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 5)
+                       .overlay(
+                            VStack {
+                                Text("Activity Tracker")
+                                    .font(.title)
+                                    .fontWeight(.semibold)
+                                    .padding(.bottom, 30)
+                                
+                                ActivityTracker().padding(.horizontal, 20)
+                            }
+                        )
                     
-                    CalendarView()
-                        .frame(minHeight: 410)
-                        .padding(.horizontal)
+                    RoundedRectangle(cornerRadius: 30)
+                       .fill(Color(UIColor.secondarySystemBackground))
+                       .frame(height: 450)
+                       .padding(.horizontal, 20)
+                       .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 5)
+                       .overlay(
+                            VStack {
+                                
+                                CalendarView()
+                               .padding(.horizontal, 20)
+                            }
+                        )
                     
                     Button(action: {
                         isJournalPresented = true
