@@ -419,7 +419,7 @@ struct ArticlesScrollView: View {
                     .frame(width: 250, height: 250)
                     .background(Color(UIColor.secondarySystemBackground))
                     .cornerRadius(20)
-                    .shadow(color: Color.black.opacity(0.4), radius: 5, x: 0, y: 5)
+                    .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 5)
                 }
                 .sheet(isPresented: $isArticle1Presented) {
                     Article1()
@@ -451,7 +451,7 @@ struct ArticlesScrollView: View {
                     .frame(width: 250, height: 250)
                     .background(Color(UIColor.secondarySystemBackground))
                     .cornerRadius(20)
-                    .shadow(color: Color.black.opacity(0.4), radius: 5, x: 0, y: 5)
+                    .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 5)
                 }
                 .sheet(isPresented: $isArticle2Presented) {
                     Article2()
@@ -483,7 +483,7 @@ struct ArticlesScrollView: View {
                     .frame(width: 250, height: 250)
                     .background(Color(UIColor.secondarySystemBackground))
                     .cornerRadius(20)
-                    .shadow(color: Color.black.opacity(0.4), radius: 5, x: 0, y: 5)
+                    .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 5)
                 }
                 .sheet(isPresented: $isArticle3Presented) {
                     Article3()
