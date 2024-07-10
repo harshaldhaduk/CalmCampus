@@ -55,6 +55,11 @@ struct landing: View {
         .fullScreenCover(isPresented: $isSignedIn, content: {
             ContentView()
         })
+        .onAppear {
+                    if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+                        windowScene.windows.first?.overrideUserInterfaceStyle = .light
+                    }
+                }
     }
 }
 

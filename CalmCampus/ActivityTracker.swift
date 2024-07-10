@@ -125,8 +125,8 @@ struct CircularProgressBar: View {
                 Text(String(format: "%.0f%%", min(self.progress, 1.0) * 100.0))
                     .font(.title)
                     .bold()
-                Text("\(Int(progress * Double(activityGoal))) / \(activityGoal) activities")
-                    .font(.system(size: 8))
+                Text("\(Int(progress * Double(activityGoal))) / \(activityGoal)")
+                    .font(.system(size: 15))
                     .foregroundColor(.gray)
             }
         }

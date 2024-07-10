@@ -167,7 +167,6 @@ struct sensory: View {
                     .padding(.horizontal)
                     .padding(.bottom,5)
                 }
-                .background(Color(.blue))
 
                 Divider()
                     .padding(.horizontal)

@@ -23,7 +23,7 @@ struct ContentView: View {
                             relaxpage()
                             .tabItem {
                                 Image(systemName: "figure.mind.and.body")
-                                Text("Relax")
+                                Text("Activites")
                             }
                             .tag(1)
                         } else {
