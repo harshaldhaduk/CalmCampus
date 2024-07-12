@@ -221,14 +221,14 @@ struct SettingsView: View {
     }
 
     func saveEmail() {
-        Auth.auth().currentUser?.updateEmail(to: newEmail) { error in
+        Auth.auth().currentUser?.sendEmailVerification(beforeUpdatingEmail: newEmail) { error in
             if let error = error {
                 print("Error updating email: \(error)")
                 self.alertTitle = "Error"
                 self.alertMessage = "Failed to update email: \(error.localizedDescription)"
             } else {
-                self.alertTitle = "Email Changed Successfully!"
-                self.alertMessage = "Your email has been updated. Please wait for changes to take effect."
+                self.alertTitle = "Email Verification Sent!"
+                self.alertMessage = "Please verify your new email address. Your email will be updated after verification."
                 self.showChangeEmail = false
             }
             DispatchQueue.main.async {
