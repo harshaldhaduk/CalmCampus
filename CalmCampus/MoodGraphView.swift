@@ -3,29 +3,30 @@ import Firebase
 
 struct MoodGraphView: View {
     @State private var moods: [Mood] = []
-
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    
     var body: some View {
         VStack {
             if moods.isEmpty {
                 Text("Loading mood data...")
                     .padding()
             } else {
-                HStack(alignment: .bottom, spacing: 10) {
+                HStack(alignment: .bottom, spacing: horizontalSizeClass == .regular ? 15 : 10) {
                     ForEach(moods, id: \.day) { mood in
                         VStack(spacing: 5) {
                             Rectangle()
                                 .fill(barColor(for: mood.moodCount))
-                                .frame(width: 35, height: CGFloat(mood.moodCount * 50)) // Adjust height multiplier as needed
-                                .cornerRadius(15)
-                                .padding(.bottom,5)
+                                .frame(width: horizontalSizeClass == .regular ? 52.5 : 35,
+                                       height: CGFloat(mood.moodCount) * (horizontalSizeClass == .regular ? 75 : 50)) // Adjust height multiplier as needed
+                                .cornerRadius(horizontalSizeClass == .regular ? 22.5 : 15)
+                                .padding(.bottom, 5)
                             
                             Text("\(formattedMonth(mood.day))")
-                                .font(.system(size: 12, weight: .bold))
+                                .font(.system(size: horizontalSizeClass == .regular ? 18 : 12, weight: .bold))
                                 .foregroundColor(.white)
-                                
                             
                             Text("\(formattedDay(mood.day))")
-                                .font(.system(size: 12, weight: .bold))
+                                .font(.system(size: horizontalSizeClass == .regular ? 18 : 12, weight: .bold))
                                 .foregroundColor(.white)
                         }
                     }
@@ -38,7 +39,6 @@ struct MoodGraphView: View {
         }
     }
 
-    // Function to load mood data from Firebase
     func loadMoodsFromFirebase() {
         guard let uid = Auth.auth().currentUser?.uid else {
             print("User is not logged in")
@@ -84,7 +84,6 @@ struct MoodGraphView: View {
                 print("Mood added: \(moodEntry)")
             }
             
-            // Sort moods by date in ascending order before updating state
             fetchedMoods.sort { $0.day < $1.day }
             
             DispatchQueue.main.async {
@@ -94,7 +93,6 @@ struct MoodGraphView: View {
         }
     }
     
-    // Function to convert mood string to mood level
     private func moodToLevel(mood: String) -> Int {
         switch mood {
         case "Happy":
@@ -108,21 +106,18 @@ struct MoodGraphView: View {
         }
     }
     
-    // Function to format month for display
     private func formattedMonth(_ date: Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMM"
         return dateFormatter.string(from: date)
     }
     
-    // Function to format day for display
     private func formattedDay(_ date: Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd"
         return dateFormatter.string(from: date)
     }
     
-    // Function to determine bar color based on mood level
     private func barColor(for moodCount: Int) -> Color {
         switch moodCount {
         case 3:

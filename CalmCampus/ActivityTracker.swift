@@ -7,38 +7,40 @@ struct ActivityTracker: View {
     @State private var activityGoal: Int = 30
     @State private var showGoalInput = false
     @State private var newGoal: String = ""
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
 
     var body: some View {
+        let isRegularSizeClass = horizontalSizeClass == .regular
+        let scaleFactor: CGFloat = isRegularSizeClass ? 1.5 : 1.0
+
         ZStack {
-            // Grey box behind the elements
-
             VStack {
-
-                HStack(spacing: 20) {
+                HStack(spacing: 20 * scaleFactor) {
                     CircularProgressBar(progress: Double(clickCounter) / Double(activityGoal), activityGoal: activityGoal)
-                        .frame(width: 100, height: 100)
+                        .frame(width: 100 * scaleFactor, height: 100 * scaleFactor)
 
-                    VStack(alignment: .leading, spacing: 10) {
+                    VStack(alignment: .leading, spacing: 10 * scaleFactor) {
                         Text(clickCounter >= activityGoal ? "You've met your goal!" : "Keep going! You're almost there!")
-                            .font(.headline)
+                            .font(.system(size: 16 * scaleFactor))
+                            .fontWeight(.semibold)
 
                         Button(action: {
                             showGoalInput = true
                         }) {
                             Text("Change Daily Activity Goal")
-                                .font(.subheadline)
+                                .font(.system(size: 14 * scaleFactor))
                                 .foregroundColor(.blue)
                         }
                     }
                 }
-                .padding(.bottom, 5)
-                .padding(.horizontal, 15)
+                .padding(.bottom, 5 * scaleFactor)
+                .padding(.horizontal, 15 * scaleFactor)
             }
             .onAppear {
                 loadClickCounterFromFirebase()
             }
             .sheet(isPresented: $showGoalInput) {
-                GoalInputView(activityGoal: $activityGoal, newGoal: $newGoal, showGoalInput: $showGoalInput)
+                GoalInputView(activityGoal: $activityGoal, newGoal: $newGoal, showGoalInput: $showGoalInput, scaleFactor: scaleFactor)
             }
         }
     }
@@ -106,27 +108,31 @@ struct ActivityTracker: View {
 struct CircularProgressBar: View {
     var progress: Double
     var activityGoal: Int
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
 
     var body: some View {
+        let isRegularSizeClass = horizontalSizeClass == .regular
+        let scaleFactor: CGFloat = isRegularSizeClass ? 1.5 : 1.0
+
         ZStack {
             Circle()
-                .stroke(lineWidth: 10)
+                .stroke(lineWidth: 10 * scaleFactor)
                 .opacity(0.3)
                 .foregroundColor(Color.blue)
 
             Circle()
                 .trim(from: 0.0, to: CGFloat(min(self.progress, 1.0)))
-                .stroke(style: StrokeStyle(lineWidth: 10, lineCap: .round, lineJoin: .round))
+                .stroke(style: StrokeStyle(lineWidth: 10 * scaleFactor, lineCap: .round, lineJoin: .round))
                 .foregroundColor(Color.blue)
                 .rotationEffect(Angle(degrees: 270.0))
                 .animation(.linear(duration: 0.6), value: progress)
 
             VStack {
                 Text(String(format: "%.0f%%", min(self.progress, 1.0) * 100.0))
-                    .font(.title)
+                    .font(.system(size: 24 * scaleFactor))
                     .bold()
                 Text("\(Int(progress * Double(activityGoal))) / \(activityGoal)")
-                    .font(.system(size: 15))
+                    .font(.system(size: 15 * scaleFactor))
                     .foregroundColor(.gray)
             }
         }
@@ -137,6 +143,7 @@ struct GoalInputView: View {
     @Binding var activityGoal: Int
     @Binding var newGoal: String
     @Binding var showGoalInput: Bool
+    let scaleFactor: CGFloat
 
     var body: some View {
         NavigationView {
@@ -144,6 +151,7 @@ struct GoalInputView: View {
                 Section(header: Text("Set New Activity Goal")) {
                     TextField("Enter new goal", text: $newGoal)
                         .keyboardType(.numberPad)
+                        .font(.system(size: 14 * scaleFactor))
                 }
                 Section {
                     Button("Save") {
@@ -152,12 +160,15 @@ struct GoalInputView: View {
                             showGoalInput = false
                         }
                     }
+                    .font(.system(size: 16 * scaleFactor))
                 }
             }
             .navigationBarTitle("Change Daily Activity Goal", displayMode: .inline)
             .navigationBarItems(trailing: Button("Cancel") {
                 showGoalInput = false
-            })
+            }
+            .font(.system(size: 16 * scaleFactor))
+            )
         }
     }
 }

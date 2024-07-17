@@ -5,47 +5,50 @@ import FirebaseFirestore
 struct CalendarView: View {
     @State private var currentDate: Date = Date()
     @State private var selectedDate: Date = Date()
-    
-    var body: some View {
-        ZStack {
-            // Grey box behind the elements
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
 
+    var body: some View {
+        let isRegularSizeClass = horizontalSizeClass == .regular
+        let scaleFactor: CGFloat = isRegularSizeClass ? 1.5 : 1.0
+
+        ZStack {
             VStack {
                 Spacer() // Add spacer above the VStack
-                
+
                 Text("Mood Tracker ")
-                                        .font(.title)
-                                        .fontWeight(.semibold)
-                
+                    .font(.system(size: 24 * scaleFactor))
+                    .fontWeight(.semibold)
+
                 // Display the selected date
                 Text("Selected Date: \(selectedDate, formatter: dateFormatter)")
-                    .font(.subheadline)
-                    .padding(.top, 10)
-                    .padding(.bottom, 1)
-                
+                    .font(.system(size: 14 * scaleFactor))
+                    .padding(.top, 10 * scaleFactor)
+                    .padding(.bottom, 1 * scaleFactor)
+
                 // Navigation buttons for month and year
                 HStack {
                     Button(action: {
                         currentDate = Calendar.current.date(byAdding: .month, value: -1, to: currentDate)!
                     }) {
                         Image(systemName: "chevron.left.circle")
-                            .font(.title)
+                            .font(.system(size: 24 * scaleFactor))
                     }
                     Text("\(currentDate, formatter: monthYearFormatter)")
-                        .font(.system(size: 24))
+                        .font(.system(size: 24 * scaleFactor))
                         .fontWeight(.medium)
                     Button(action: {
                         currentDate = Calendar.current.date(byAdding: .month, value: 1, to: currentDate)!
                     }) {
                         Image(systemName: "chevron.right.circle")
-                            .font(.title)
+                            .font(.system(size: 24 * scaleFactor))
                     }
                 }
                 .padding(.horizontal)
-                
+                .padding(.bottom, 40)
+
                 // Calendar grid
-                CalendarGridView(currentDate: $currentDate, selectedDate: $selectedDate)
-                
+                CalendarGridView(currentDate: $currentDate, selectedDate: $selectedDate, scaleFactor: scaleFactor)
+
                 Spacer() // Add spacer below the VStack
             }
             .padding()
@@ -56,6 +59,7 @@ struct CalendarView: View {
 struct CalendarGridView: View {
     @Binding var currentDate: Date
     @Binding var selectedDate: Date
+    let scaleFactor: CGFloat
 
     var body: some View {
         VStack {
@@ -64,9 +68,9 @@ struct CalendarGridView: View {
                 ForEach(["S", "M", "T", "W", "T", "F", "S"], id: \.self) { day in
                     Spacer()
                     Text(day)
-                        .font(.headline)
+                        .font(.system(size: 14 * scaleFactor))
                         .fontWeight(.bold)
-                        .frame(width: 30, height: 30)
+                        .frame(width: 30 * scaleFactor, height: 30 * scaleFactor)
                         .background(Color.blue.opacity(0.7))
                         .clipShape(Circle())
                         .foregroundColor(.white)
@@ -75,12 +79,12 @@ struct CalendarGridView: View {
             }
 
             // Calendar grid
-            VStack(spacing: 5) {
+            VStack(spacing: 5 * scaleFactor) {
                 ForEach(getCalendarMatrix(), id: \.self) { week in
                     HStack {
                         ForEach(week, id: \.self) { date in
                             Spacer()
-                            DateCell(date: date, selectedDate: $selectedDate)
+                            DateCell(date: date, selectedDate: $selectedDate, scaleFactor: scaleFactor)
                         }
                         Spacer()
                     }
@@ -132,6 +136,7 @@ struct DateCell: View {
     let date: Date?
     @Binding var selectedDate: Date
     @State private var moodColor: Color = .clear
+    let scaleFactor: CGFloat
 
     var body: some View {
         Button(action: {
@@ -140,7 +145,7 @@ struct DateCell: View {
             }
         }) {
             Text(date.map { "\(Calendar.current.component(.day, from: $0))" } ?? "")
-                .frame(width: 30, height: 30)
+                .frame(width: 30 * scaleFactor, height: 30 * scaleFactor)
                 .background(moodColor)
                 .clipShape(Circle())
                 .foregroundColor(.primary)

@@ -16,11 +16,12 @@ struct SettingsView: View {
     @State private var showAbout = false
     @State private var isDarkMode = UserDefaults.standard.bool(forKey: "isDarkMode")
     @State private var passwordMismatch = false
+    @State private var showDeleteAccountConfirmation: Bool = false
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             Form {
                 Section(header: Text("User Settings")) {
                     Button(action: {
@@ -66,6 +67,15 @@ struct SettingsView: View {
                 Section {
                     Button(action: logout) {
                         Text("Logout")
+                            .foregroundColor(.red)
+                    }
+                }
+
+                Section {
+                    Button(action: {
+                        showDeleteAccountConfirmation = true
+                    }) {
+                        Text("Delete Account")
                             .foregroundColor(.red)
                     }
                 }
@@ -181,6 +191,16 @@ struct SettingsView: View {
                     dismissButton: .default(Text("OK"))
                 )
             }
+            .alert(isPresented: $showDeleteAccountConfirmation) {
+                Alert(
+                    title: Text("Delete Account"),
+                    message: Text("Are you sure you want to delete your account? This action cannot be undone."),
+                    primaryButton: .destructive(Text("Yes")) {
+                        deleteAccount()
+                    },
+                    secondaryButton: .cancel()
+                )
+            }
         }
     }
     
@@ -259,6 +279,42 @@ struct SettingsView: View {
         
         let db = Firestore.firestore()
         db.collection("users").document(uid).updateData(["isDarkMode": isDarkMode]) { error in
+        }
+    }
+
+    func deleteAccount() {
+        guard let user = Auth.auth().currentUser else { return }
+        
+        let uid = user.uid
+        let db = Firestore.firestore()
+        
+        // Delete Firestore user data
+        db.collection("users").document(uid).delete { error in
+            if let error = error {
+                print("Error deleting user data: \(error)")
+                self.alertTitle = "Error"
+                self.alertMessage = "Failed to delete user data: \(error.localizedDescription)"
+                DispatchQueue.main.async {
+                    self.showAlert = true
+                }
+                return
+            }
+
+            // Delete Firebase Auth account
+            user.delete { error in
+                if let error = error {
+                    print("Error deleting user account: \(error)")
+                    self.alertTitle = "Error"
+                    self.alertMessage = "Failed to delete account: \(error.localizedDescription)"
+                } else {
+                    self.alertTitle = "Account Deleted"
+                    self.alertMessage = "Your account has been deleted successfully."
+                    self.logout()
+                }
+                DispatchQueue.main.async {
+                    self.showAlert = true
+                }
+            }
         }
     }
 }

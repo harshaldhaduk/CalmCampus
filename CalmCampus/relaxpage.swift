@@ -3,9 +3,15 @@ import Firebase
 
 struct relaxpage: View {
     @State private var clickCounter = 0
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    @Environment(\.verticalSizeClass) var verticalSizeClass
+    
+    var isIPad: Bool {
+        horizontalSizeClass == .regular && verticalSizeClass == .regular
+    }
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 20) {
                     Text("Meditate")
@@ -16,15 +22,15 @@ struct relaxpage: View {
                         .id("Meditate")
                     
                     ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: 20) {
+                        HStack(spacing: isIPad ? 30 : 20) {
                             ForEach(0..<4) { index in
-                                MeditationSessionButton(title: meditationTitles(index), imageName: index == 0 ? "breathe" : nil, clickCounter: $clickCounter)
+                                MeditationSessionButton(title: meditationTitles(index), imageName: index == 0 ? "breathe" : nil, clickCounter: $clickCounter, isIPad: isIPad)
                             }
                         }
                         .padding(.horizontal)
-                        .padding(.bottom,5)
+                        .padding(.bottom, isIPad ? 7.5 : 5)
                     }
-                    .frame(height: 130)
+                    .frame(height: isIPad ? 205 : 130)
                     
                     Divider()
                         .padding(.horizontal)
@@ -36,15 +42,15 @@ struct relaxpage: View {
                         .id("Relax")
                     
                     ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: 20) {
+                        HStack(spacing: isIPad ? 30 : 20) {
                             ForEach(0..<3) { index in
-                                RelaxationSessionButton(title: relaxationTitles(index), clickCounter: $clickCounter)
+                                RelaxationSessionButton(title: relaxationTitles(index), clickCounter: $clickCounter, isIPad: isIPad)
                             }
                         }
                         .padding(.horizontal)
-                        .padding(.bottom,5)
+                        .padding(.bottom, isIPad ? 7.5 : 5)
                     }
-                    .frame(height: 130)
+                    .frame(height: isIPad ? 205 : 130)
                     
                     Divider()
                         .padding(.horizontal)
@@ -55,7 +61,7 @@ struct relaxpage: View {
                         .padding(.horizontal)
                         .id("Featured")
                     
-                    ArticlesScrollView(clickCounter: $clickCounter)
+                    ArticlesScrollView(clickCounter: $clickCounter, isIPad: isIPad)
                         .padding(.top, 10)
                         .padding(.horizontal)
                 }
@@ -124,11 +130,11 @@ struct relaxpage: View {
     }
 }
 
-
 struct MeditationSessionButton: View {
     var title: String
     var imageName: String?
     @Binding var clickCounter: Int
+    var isIPad: Bool
     
     var body: some View {
         Group {
@@ -165,29 +171,29 @@ struct MeditationSessionButton: View {
                 Image("movement")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .frame(width: 200, height: 130)
+                    .frame(width: isIPad ? 300 : 200, height: isIPad ? 205 : 130)
                     .clipped()
                     .overlay(
                         Color.black.opacity(0.3) // Increased opacity to 0.7
                             .edgesIgnoringSafeArea(.all)
                     )
                     .blur(radius: 0) // Blur the image
-            }  else if title == "Mindfulness" {
+            } else if title == "Mindfulness" {
                 Image("mindfulness")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .frame(width: 200, height: 130)
+                    .frame(width: isIPad ? 300 : 200, height: isIPad ? 205 : 130)
                     .clipped()
                     .overlay(
                         Color.black.opacity(0.3) // Increased opacity to 0.7
                             .edgesIgnoringSafeArea(.all)
                     )
                     .blur(radius: 0) // Blur the image
-            }  else if title == "Loving-Kindness" {
+            } else if title == "Loving-Kindness" {
                 Image("loving")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .frame(width: 200, height: 130)
+                    .frame(width: isIPad ? 300 : 200, height: isIPad ? 205 : 130)
                     .clipped()
                     .overlay(
                         Color.black.opacity(0.3) // Increased opacity to 0.7
@@ -198,7 +204,7 @@ struct MeditationSessionButton: View {
                 Image(imageName)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .frame(width: 200, height: 130)
+                    .frame(width: isIPad ? 300 : 200, height: isIPad ? 205 : 130)
                     .clipped()
                     .overlay(
                         Color.black.opacity(0.3) // Increased opacity to 0.7
@@ -216,7 +222,7 @@ struct MeditationSessionButton: View {
                 Spacer()
             }
         }
-        .frame(width: 200, height: 130)
+        .frame(width: isIPad ? 300 : 200, height: isIPad ? 205 : 130)
         .background(Color.white)
         .cornerRadius(20)
         .shadow(color: Color.black.opacity(0.4), radius: 5, x: 0, y: 5) // Adjusted drop shadow
@@ -232,7 +238,8 @@ struct RelaxationSessionButton: View {
     var imageName: String?
     @State private var showFullScreen = false
     @Binding var clickCounter: Int
-
+    var isIPad: Bool
+    
     var body: some View {
         Group {
             if title == "Relaxing Soundscapes" {
@@ -242,17 +249,16 @@ struct RelaxationSessionButton: View {
                 }) {
                     buttonContent
                 }
-               .fullScreenCover(isPresented: $showFullScreen) {
+                .fullScreenCover(isPresented: $showFullScreen) {
                     NavigationView {
                         sensory().edgesIgnoringSafeArea(.all)
-                           .navigationBarBackButtonHidden(true)
-                           .toolbar {
-                                ToolbarItem(placement:.navigationBarLeading) {
+                            .navigationBarBackButtonHidden(true)
+                            .toolbar {
+                                ToolbarItem(placement: .navigationBarLeading) {
                                     Button(action: {
                                         showFullScreen = false
                                     }) {
-                                        Image(systemName: "chevron.backward")
-                                           .imageScale(.large)
+                                        Text("Done")
                                     }
                                 }
                             }
@@ -265,17 +271,16 @@ struct RelaxationSessionButton: View {
                 }) {
                     buttonContent
                 }
-               .fullScreenCover(isPresented: $showFullScreen) {
+                .fullScreenCover(isPresented: $showFullScreen) {
                     NavigationView {
                         GameScenePreview().edgesIgnoringSafeArea(.all)
-                           .navigationBarBackButtonHidden(true)
-                           .toolbar {
-                                ToolbarItem(placement:.navigationBarLeading) {
+                            .navigationBarBackButtonHidden(true)
+                            .toolbar {
+                                ToolbarItem(placement: .navigationBarLeading) {
                                     Button(action: {
                                         showFullScreen = false
                                     }) {
-                                        Image(systemName: "chevron.backward")
-                                           .imageScale(.large)
+                                        Text("Done")
                                     }
                                 }
                             }
@@ -288,17 +293,16 @@ struct RelaxationSessionButton: View {
                 }) {
                     buttonContent
                 }
-               .fullScreenCover(isPresented: $showFullScreen) {
+                .fullScreenCover(isPresented: $showFullScreen) {
                     NavigationView {
                         artistic().edgesIgnoringSafeArea(.all)
-                           .navigationBarBackButtonHidden(true)
-                           .toolbar {
-                                ToolbarItem(placement:.navigationBarLeading) {
+                            .navigationBarBackButtonHidden(true)
+                            .toolbar {
+                                ToolbarItem(placement: .navigationBarLeading) {
                                     Button(action: {
                                         showFullScreen = false
                                     }) {
-                                        Image(systemName: "chevron.backward")
-                                           .imageScale(.large)
+                                        Text("Done")
                                     }
                                 }
                             }
@@ -314,36 +318,36 @@ struct RelaxationSessionButton: View {
             }
         }
     }
-
+    
     var buttonContent: some View {
         ZStack {
             if title == "Relaxing Soundscapes" {
                 Image("sensory")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .frame(width: 200, height: 130)
+                    .frame(width: isIPad ? 300 : 200, height: isIPad ? 205 : 130)
                     .clipped()
                     .overlay(
                         Color.black.opacity(0.3) // Increased opacity to 0.7
                             .edgesIgnoringSafeArea(.all)
                     )
                     .blur(radius: 0) // Blur the image
-            }  else if title == "Garden Creator" {
+            } else if title == "Garden Creator" {
                 Image("nature")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .frame(width: 200, height: 130)
+                    .frame(width: isIPad ? 300 : 200, height: isIPad ? 205 : 130)
                     .clipped()
                     .overlay(
                         Color.black.opacity(0.3) // Increased opacity to 0.7
                             .edgesIgnoringSafeArea(.all)
                     )
                     .blur(radius: 0) // Blur the image
-            }  else if title == "Artistic Expression" {
+            } else if title == "Artistic Expression" {
                 Image("artistic")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .frame(width: 200, height: 130)
+                    .frame(width: isIPad ? 300 : 200, height: isIPad ? 205 : 130)
                     .clipped()
                     .overlay(
                         Color.black.opacity(0.3) // Increased opacity to 0.7
@@ -354,7 +358,7 @@ struct RelaxationSessionButton: View {
                 Image(imageName)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .frame(width: 200, height: 130)
+                    .frame(width: isIPad ? 300 : 200, height: isIPad ? 205 : 130)
                     .clipped()
                     .overlay(
                         Color.black.opacity(0.3) // Increased opacity to 0.7
@@ -372,7 +376,7 @@ struct RelaxationSessionButton: View {
                 Spacer()
             }
         }
-        .frame(width: 200, height: 130)
+        .frame(width: isIPad ? 300 : 200, height: isIPad ? 205 : 130)
         .background(Color.white)
         .cornerRadius(20)
         .shadow(color: Color.black.opacity(0.4), radius: 5, x: 0, y: 5) // Adjusted drop shadow
@@ -383,12 +387,12 @@ struct RelaxationSessionButton: View {
     }
 }
 
-
 struct ArticlesScrollView: View {
     @State private var isArticle1Presented = false
     @State private var isArticle2Presented = false
     @State private var isArticle3Presented = false
     @Binding var clickCounter: Int
+    var isIPad: Bool
 
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
@@ -400,25 +404,25 @@ struct ArticlesScrollView: View {
                 }) {
                     VStack {
                         ZStack {
-                            RoundedRectangle(cornerRadius: 10)
+                            RoundedRectangle(cornerRadius: isIPad ? 15 : 10)
                                 .fill(Color.blue.opacity(0.7))
-                                .frame(height: 52)
+                                .frame(width: isIPad ? 300 : 200, height: isIPad ? 78 : 52)
                             Text("The Power of Mindfulness")
                                 .font(.headline)
                                 .foregroundColor(.white)
-                                .padding(.horizontal, 10)
+                                .padding(.horizontal, isIPad ? 18 : 12)
                         }
                         Text("Discover how simple mindfulness techniques can transform your daily routine and improve your mental well-being.")
-                            .padding(.top, 10)
+                            .padding(.top, isIPad ? 15 : 10)
                             .foregroundColor(.gray)
                             .padding(.horizontal)
                         Spacer()
                     }
-                    .padding(.top, 20)
-                    .padding(.horizontal, 10)
-                    .frame(width: 250, height: 250)
+                    .padding(.top, isIPad ? 30 : 20)
+                    .padding(.horizontal, isIPad ? 15 : 10)
+                    .frame(width: isIPad ? 375 : 250, height: isIPad ? 375 : 250)
                     .background(Color(UIColor.secondarySystemBackground))
-                    .cornerRadius(20)
+                    .cornerRadius(isIPad ? 30 : 20)
                     .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 5)
                 }
                 .sheet(isPresented: $isArticle1Presented) {
@@ -432,25 +436,25 @@ struct ArticlesScrollView: View {
                 }) {
                     VStack {
                         ZStack {
-                            RoundedRectangle(cornerRadius: 10)
+                            RoundedRectangle(cornerRadius: isIPad ? 15 : 10)
                                 .fill(Color.blue.opacity(0.7))
-                                .frame(height: 52)
-                            Text("Breaking the Cycle of Stress")
+                                .frame(width: isIPad ? 300 : 200, height: isIPad ? 78 : 52)
+                            Text("Breaking The Cycle of Stress")
                                 .font(.headline)
                                 .foregroundColor(.white)
-                                .padding(.horizontal, 10)
+                                .padding(.horizontal, isIPad ? 15 : 10)
                         }
                         Text("Discover how simple mindfulness techniques can transform your daily routine and improve your mental well-being.")
-                            .padding(.top, 10)
+                            .padding(.top, isIPad ? 15 : 10)
                             .foregroundColor(.gray)
                             .padding(.horizontal)
                         Spacer()
                     }
-                    .padding(.top, 20)
-                    .padding(.horizontal, 10)
-                    .frame(width: 250, height: 250)
+                    .padding(.top, isIPad ? 30 : 20)
+                    .padding(.horizontal, isIPad ? 15 : 10)
+                    .frame(width: isIPad ? 375 : 250, height: isIPad ? 375 : 250)
                     .background(Color(UIColor.secondarySystemBackground))
-                    .cornerRadius(20)
+                    .cornerRadius(isIPad ? 30 : 20)
                     .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 5)
                 }
                 .sheet(isPresented: $isArticle2Presented) {
@@ -464,33 +468,33 @@ struct ArticlesScrollView: View {
                 }) {
                     VStack {
                         ZStack {
-                            RoundedRectangle(cornerRadius: 10)
+                            RoundedRectangle(cornerRadius: isIPad ? 15 : 10)
                                 .fill(Color.blue.opacity(0.7))
-                                .frame(height: 52)
+                                .frame(width: isIPad ? 300 : 200, height: isIPad ? 78 : 52)
                             Text("A Simple Guide to Meditation")
                                 .font(.headline)
                                 .foregroundColor(.white)
-                                .padding(.horizontal, 10)
+                                .padding(.horizontal, isIPad ? 15 : 10)
                         }
                         Text("Discover the basics of meditation with this simple guide for beginners and start your journey toward inner peace and relaxation.")
-                            .padding(.top, 10)
-                            .foregroundColor(Color.gray)
+                            .padding(.top, isIPad ? 15 : 10)
+                            .foregroundColor(.gray)
                             .padding(.horizontal)
                         Spacer()
                     }
-                    .padding(.top, 20)
-                    .padding(.horizontal, 10)
-                    .frame(width: 250, height: 250)
+                    .padding(.top, isIPad ? 30 : 20)
+                    .padding(.horizontal, isIPad ? 15 : 10)
+                    .frame(width: isIPad ? 375 : 250, height: isIPad ? 375 : 250)
                     .background(Color(UIColor.secondarySystemBackground))
-                    .cornerRadius(20)
+                    .cornerRadius(isIPad ? 30 : 20)
                     .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 5)
                 }
                 .sheet(isPresented: $isArticle3Presented) {
                     Article3()
                 }
             }
-            .padding(.top, 5)
-            .padding(.bottom, 30)
+            .padding(.top, isIPad ? 7.5 : 5)
+            .padding(.bottom, isIPad ? 25 : 30)
         }
         .edgesIgnoringSafeArea(.horizontal)
     }
@@ -679,8 +683,11 @@ struct Article3: View {
     }
 }
 
-struct Relaxpage_Previews: PreviewProvider {
+
+struct relaxpage_Previews: PreviewProvider {
     static var previews: some View {
         relaxpage()
+            .previewDevice("iPad Pro (12.9-inch)")
+            .previewInterfaceOrientation(.landscapeLeft)
     }
 }

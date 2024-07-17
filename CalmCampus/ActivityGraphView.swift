@@ -4,6 +4,7 @@ import Firebase
 struct ActivityGraphView: View {
     @State private var activityData: [ActivityData] = []
     @State private var maxClickCounter: Int = 1 // Minimum value to prevent division by zero
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
 
     var body: some View {
         VStack {
@@ -11,25 +12,26 @@ struct ActivityGraphView: View {
                 Text("Loading activity data...")
                     .padding()
             } else {
-                HStack(alignment: .bottom, spacing: 10) {
+                HStack(alignment: .bottom, spacing: horizontalSizeClass == .regular ? 15 : 10) {
                     ForEach(activityData, id: \.date) { data in
                         VStack(spacing: 5) {
                             Text("\(data.clickCounter)") // Display clickCounter value
-                                                            .font(.system(size: 12, weight: .bold))
-                                                            .foregroundColor(.white)
+                                .font(.system(size: horizontalSizeClass == .regular ? 18 : 12, weight: .bold))
+                                .foregroundColor(.white)
                             
                             Rectangle()
                                 .fill(barColor(for: data.clickCounter))
-                                .frame(width: 35, height: barHeight(for: data.clickCounter)) // Adjusted height
-                                .cornerRadius(15)
+                                .frame(width: horizontalSizeClass == .regular ? 52.5 : 35,
+                                       height: barHeight(for: data.clickCounter)) // Adjusted height
+                                .cornerRadius(horizontalSizeClass == .regular ? 22.5 : 15)
                                 .padding(.bottom, 5)
                             
                             Text("\(formattedMonth(data.date))")
-                                .font(.system(size: 12, weight: .bold))
+                                .font(.system(size: horizontalSizeClass == .regular ? 18 : 12, weight: .bold))
                                 .foregroundColor(.white)
                             
                             Text("\(formattedDay(data.date))")
-                                .font(.system(size: 12, weight: .bold))
+                                .font(.system(size: horizontalSizeClass == .regular ? 18 : 12, weight: .bold))
                                 .foregroundColor(.white)
                         }
                     }
@@ -42,7 +44,6 @@ struct ActivityGraphView: View {
         }
     }
 
-    // Function to load activity data from Firebase
     func loadActivityDataFromFirebase() {
         guard let uid = Auth.auth().currentUser?.uid else {
             print("User is not logged in")
@@ -83,12 +84,10 @@ struct ActivityGraphView: View {
                 print("Activity data added: \(activityEntry)")
             }
             
-            // Find maximum clickCounter value for scaling purposes
             if let maxClickCounter = fetchedActivityData.map({ $0.clickCounter }).max() {
                 self.maxClickCounter = maxClickCounter
             }
             
-            // Sort activity data by date in ascending order before updating state
             fetchedActivityData.sort { $0.date < $1.date }
             
             DispatchQueue.main.async {
@@ -98,28 +97,24 @@ struct ActivityGraphView: View {
         }
     }
     
-    // Function to format month for display
     private func formattedMonth(_ date: Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMM"
         return dateFormatter.string(from: date)
     }
     
-    // Function to format day for display
     private func formattedDay(_ date: Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd"
         return dateFormatter.string(from: date)
     }
     
-    // Function to determine bar height based on clickCounter value
     private func barHeight(for clickCounter: Int) -> CGFloat {
-        let maxHeight: CGFloat = 130 // Maximum height you want the bars to reach
+        let maxHeight: CGFloat = horizontalSizeClass == .regular ? 195 : 130 // Maximum height you want the bars to reach
         let scaledHeight = CGFloat(clickCounter) / CGFloat(maxClickCounter) * maxHeight
         return scaledHeight
     }
     
-    // Function to determine bar color based on clickCounter value
     private func barColor(for clickCounter: Int) -> Color {
         switch clickCounter {
         case 0..<10:
