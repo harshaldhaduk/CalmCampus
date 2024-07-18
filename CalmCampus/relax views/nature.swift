@@ -1,24 +1,26 @@
-//
-//  nature.swift
-//  CalmCampus
-//
-//  Created by Harshal Dhaduk on 3/15/24.
-//
-
-//
-//  nature.swift
-//  CalmCampus
-//
-//  Created by Harshal Dhaduk on 3/15/24.
-//
-
 import SwiftUI
 import SpriteKit
 
-struct GameScenePreview: UIViewRepresentable {
+struct GameScenePreview: View {
+    @State private var isPopupPresented = true
+
+    var body: some View {
+        ZStack {
+            RepresentableGameView(isPopupPresented: $isPopupPresented)
+                .edgesIgnoringSafeArea(.all)
+            if isPopupPresented {
+                InfoPopup(isPresented: $isPopupPresented)
+            }
+        }
+    }
+}
+
+struct RepresentableGameView: UIViewRepresentable {
+    @Binding var isPopupPresented: Bool
+
     func makeUIView(context: Context) -> SKView {
-        let skView = SKView(frame: CGRect(x: 0, y: 0, width: 400, height: 600))
-        let scene = GameScene(size: skView.bounds.size)
+        let skView = SKView(frame: .zero)
+        let scene = GameScene(size: CGSize(width: 400, height: 600), isPopupPresented: $isPopupPresented)
         scene.scaleMode = .fill
         skView.presentScene(scene)
         return skView
@@ -30,8 +32,17 @@ struct GameScenePreview: UIViewRepresentable {
 }
 
 class GameScene: SKScene {
-    // Game state
-    
+    @Binding var isPopupPresented: Bool
+
+    init(size: CGSize, isPopupPresented: Binding<Bool>) {
+        self._isPopupPresented = isPopupPresented
+        super.init(size: size)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override func didMove(to view: SKView) {
         // Set background image
         let background = SKSpriteNode(imageNamed: "grass")
@@ -40,15 +51,19 @@ class GameScene: SKScene {
         background.zPosition = -1 // Ensure the background is behind other nodes
         addChild(background)
     }
-    
+
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        // Handle player input
-        for touch in touches {
-            let location = touch.location(in: self)
-            plantObject(at: location)
+        if isPopupPresented {
+            isPopupPresented = false
+        } else {
+            // Handle player input
+            for touch in touches {
+                let location = touch.location(in: self)
+                plantObject(at: location)
+            }
         }
     }
-    
+
     func plantObject(at location: CGPoint) {
         let images: [(String, Int)] = [
             ("flower1", 100),
@@ -86,6 +101,45 @@ class GameScene: SKScene {
                 return
             }
         }
+    }
+}
+
+struct InfoPopup: View {
+    @Binding var isPresented: Bool
+
+    var body: some View {
+        VStack(spacing: 20) {
+            Text("Flower Hunt!")
+                .font(.title)
+                .fontWeight(.bold)
+                .padding()
+
+            Image("flower11") // Replace with the appropriate flower image
+                .resizable()
+                .scaledToFit()
+                .frame(width: 100, height: 100)
+
+            Text("The flower above has a 1/1000 chance of spawning. Try and be the one to plant it!")
+                .font(.body)
+                .multilineTextAlignment(.center)
+                .padding()
+                .lineLimit(nil) // Allow unlimited lines
+
+            Button(action: {
+                isPresented = false
+            }) {
+                Text("Got it!")
+                    .padding()
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
+            }
+        }
+        .padding()
+        .background(Color(UIColor.secondarySystemBackground))
+        .cornerRadius(20)
+        .shadow(radius: 10)
+        .frame(width: 300) // Remove fixed height to allow content to expand
     }
 }
 

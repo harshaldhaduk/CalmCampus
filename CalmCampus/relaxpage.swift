@@ -410,7 +410,7 @@ struct ArticlesScrollView: View {
                             Text("The Power of Mindfulness")
                                 .font(.headline)
                                 .foregroundColor(.white)
-                                .padding(.horizontal, isIPad ? 18 : 12)
+                                .padding(.horizontal, isIPad ? 20 : 13)
                         }
                         Text("Discover how simple mindfulness techniques can transform your daily routine and improve your mental well-being.")
                             .padding(.top, isIPad ? 15 : 10)

@@ -94,17 +94,31 @@ struct SettingsView: View {
                         }
                         
                         Section {
-                            Button("Save") {
-                                saveNickname()
-                            }
-                        }
-                    }
-                    .navigationBarTitle("Change Nickname", displayMode: .inline)
-                    .navigationBarItems(trailing: Button("Cancel") {
-                        showChangeNickname = false
-                    })
-                }
-            }
+                                       Button("Save") {
+                                           if newNickname.isEmpty {
+                                               alertTitle = "Error"
+                                               alertMessage = "Please enter a new nickname"
+                                               showAlert = true
+                                           } else {
+                                               saveNickname()
+                                               alertTitle = "Name Changed Successfully!"
+                                               alertMessage = "Your name has been updated. Please wait for changes to take effect."
+                                               showAlert = true
+                                           }
+                                       }
+                                   }
+                               }
+                               .navigationBarTitle("Change Nickname", displayMode: .inline)
+                               .navigationBarItems(trailing: Button("Done") {
+                                   self.showChangeNickname = false
+                               })
+                               .alert(isPresented: $showAlert) {
+                                           Alert(title: Text(alertTitle), message: Text(alertMessage), dismissButton: .default(Text("OK")) {
+                                               self.showChangeNickname = false // <--- Add this line
+                                           })
+                                       }
+                           }
+                       }
             .sheet(isPresented: $showChangeEmail) {
                 NavigationView {
                     Form {
@@ -115,17 +129,31 @@ struct SettingsView: View {
                         }
                         
                         Section {
-                            Button("Save") {
-                                saveEmail()
-                            }
-                        }
-                    }
-                    .navigationBarTitle("Change Email", displayMode: .inline)
-                    .navigationBarItems(trailing: Button("Cancel") {
-                        showChangeEmail = false
-                    })
-                }
-            }
+                                       Button("Save") {
+                                           if newEmail.isEmpty {
+                                               alertTitle = "Error"
+                                               alertMessage = "Please enter a new email"
+                                               showAlert = true
+                                           } else {
+                                               saveEmail()
+                                               alertTitle = "Email Changed Successfully!"
+                                               alertMessage = "Your email has been updated. Please wait for changes to take effect."
+                                               showAlert = true
+                                           }
+                                       }
+                                   }
+                               }
+                               .navigationBarTitle("Change Email", displayMode: .inline)
+                               .navigationBarItems(trailing: Button("Done") {
+                                   self.showChangeEmail = false
+                               })
+                               .alert(isPresented: $showAlert) {
+                                           Alert(title: Text(alertTitle), message: Text(alertMessage), dismissButton: .default(Text("OK")) {
+                                               self.showChangeNickname = false // <--- Add this line
+                                           })
+                                       }
+                           }
+                       }
             .sheet(isPresented: $showChangePassword) {
                 NavigationView {
                     Form {
@@ -134,32 +162,32 @@ struct SettingsView: View {
                             SecureField("Confirm new password", text: $confirmPassword)
                         }
                         
-                        Button("Save") {
-                            if newPassword != confirmPassword {
-                                passwordMismatch = true
-                            } else {
-                                passwordMismatch = false
-                                savePassword()
-                            }
-                        }
-                        
-                        if passwordMismatch {
-                            HStack {
-                                Spacer ()
-                                Text("Passwords do not match")
-                                .foregroundColor(.red)
-                                .font(.caption)
-                                Spacer()
-                            }
-                            .listRowBackground(Color.clear)
-                        }
-                    }
-                    .navigationBarTitle("Change Password", displayMode: .inline)
-                    .navigationBarItems(trailing: Button("Cancel") {
-                        showChangePassword = false
-                    })
-                }
-            }
+                        Section {
+                                       Button("Save") {
+                                           if newPassword != confirmPassword {
+                                               alertTitle = "Error"
+                                               alertMessage = "Passwords do not match"
+                                               showAlert = true
+                                           } else {
+                                               savePassword()
+                                               alertTitle = "Password Changed Successfully!"
+                                               alertMessage = "Your password has been updated. Please wait for changes to take effect."
+                                               showAlert = true
+                                           }
+                                       }
+                                   }
+                               }
+                               .navigationBarTitle("Change Password", displayMode: .inline)
+                               .navigationBarItems(trailing: Button("Done") {
+                                   self.showChangePassword = false
+                               })
+                               .alert(isPresented: $showAlert) {
+                                           Alert(title: Text(alertTitle), message: Text(alertMessage), dismissButton: .default(Text("OK")) {
+                                               self.showChangeNickname = false // <--- Add this line
+                                           })
+                                       }
+                           }
+                       }
             .sheet(isPresented: $showAbout) {
                 NavigationView {
                     Form {
@@ -185,12 +213,12 @@ struct SettingsView: View {
                 }
             }
             .alert(isPresented: $showAlert) {
-                Alert(
-                    title: Text(alertTitle),
-                    message: Text(alertMessage),
-                    dismissButton: .default(Text("OK"))
-                )
-            }
+                           Alert(
+                               title: Text(alertTitle),
+                               message: Text(alertMessage),
+                               dismissButton: .default(Text("OK"))
+                           )
+                       }
             .alert(isPresented: $showDeleteAccountConfirmation) {
                 Alert(
                     title: Text("Delete Account"),
@@ -232,7 +260,6 @@ struct SettingsView: View {
             } else {
                 self.alertTitle = "Name Changed Successfully!"
                 self.alertMessage = "Your name has been updated. Please wait for changes to take effect."
-                self.showChangeNickname = false
             }
             DispatchQueue.main.async {
                 self.showAlert = true
@@ -241,15 +268,14 @@ struct SettingsView: View {
     }
 
     func saveEmail() {
-        Auth.auth().currentUser?.sendEmailVerification(beforeUpdatingEmail: newEmail) { error in
+        Auth.auth().currentUser?.updateEmail(to: newEmail) { error in
             if let error = error {
                 print("Error updating email: \(error)")
                 self.alertTitle = "Error"
                 self.alertMessage = "Failed to update email: \(error.localizedDescription)"
             } else {
-                self.alertTitle = "Email Verification Sent!"
-                self.alertMessage = "Please verify your new email address. Your email will be updated after verification."
-                self.showChangeEmail = false
+                self.alertTitle = "Email Changed Successfully!"
+                self.alertMessage = "Your email has been updated. Please wait for changes to take effect."
             }
             DispatchQueue.main.async {
                 self.showAlert = true
@@ -266,7 +292,6 @@ struct SettingsView: View {
             } else {
                 self.alertTitle = "Password Changed Successfully!"
                 self.alertMessage = "Your password has been updated. Please wait for changes to take effect."
-                self.showChangePassword = false
             }
             DispatchQueue.main.async {
                 self.showAlert = true
